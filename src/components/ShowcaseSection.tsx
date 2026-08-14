@@ -15,7 +15,8 @@ import {
   Phone,
   Calendar,
   MessageCircle,
-  Award
+  Award,
+  ChevronLeft
 } from 'lucide-react';
 
 interface ShowcaseSectionProps {
@@ -176,37 +177,14 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
                 <div className="w-2 h-2 rounded-full bg-black/80" />
               </div>
 
-              {/* Mobile Phone Top Page Header Navigation Bar */}
-              <div className="flex items-center justify-between gap-1 pb-2 mb-2 border-b border-neutral-800/80">
+              {/* Mobile Phone Top Header Bar */}
+              <div className="flex items-center justify-between pb-2 mb-2 border-b border-neutral-800/80">
                 <span className="text-[10px] font-bold text-[#d4af37] flex items-center gap-1 drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]">
                   <Flame className="w-3 h-3 text-[#2eb886] drop-shadow-[0_0_6px_rgba(46,184,134,0.6)]" /> Douglas App
                 </span>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => onNavigate && onNavigate('about')}
-                    className="text-[9px] px-1.5 py-0.5 rounded-full bg-white/10 text-neutral-200 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  >
-                    About
-                  </button>
-                  <button
-                    onClick={() => onNavigate && onNavigate('projects')}
-                    className="text-[9px] px-1.5 py-0.5 rounded-full bg-white/10 text-neutral-200 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  >
-                    Gallery
-                  </button>
-                  <button
-                    onClick={() => handlePhoneNav('packages', true)}
-                    className="text-[9px] px-2 py-0.5 rounded-full bg-[#d4af37] text-black font-bold flex items-center gap-0.5 cursor-pointer"
-                  >
-                    <Package className="w-2.5 h-2.5" /> Packages
-                  </button>
-                  <button
-                    onClick={() => handlePhoneNav('contact', true)}
-                    className="text-[9px] px-1.5 py-0.5 rounded-full bg-white/10 text-white font-medium hover:bg-white/20 transition-colors cursor-pointer"
-                  >
-                    Contact
-                  </button>
-                </div>
+                <span className="text-[9px] text-[#2eb886] font-mono bg-[#2eb886]/10 border border-[#2eb886]/30 px-2 py-0.5 rounded-full font-bold">
+                  Active Pass
+                </span>
               </div>
 
               {/* Inner Dynamic Screen Content based on Left Phone Tab */}
@@ -689,7 +667,24 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
             </p>
           </div>
         </motion.div>
+      </div>
 
+      {/* ================= FOOTER BACK TO HOME BUTTON ================= */}
+      <div className="flex items-center justify-center pt-8 mt-6 border-t border-neutral-900/90 relative z-10">
+        <button
+          onClick={() => {
+            if (onNavigate) {
+              onNavigate('home');
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }}
+          className="group relative flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 hover:border-[#d4af37]/60 text-neutral-300 hover:text-white text-xs sm:text-sm font-semibold transition-all shadow-lg hover:shadow-[#d4af37]/10 cursor-pointer"
+        >
+          <ChevronLeft className="w-4 h-4 text-[#d4af37] group-hover:-translate-x-0.5 transition-transform" />
+          <Home className="w-4 h-4 text-[#d4af37]" />
+          <span>Back to Home</span>
+        </button>
       </div>
     </section>
   );

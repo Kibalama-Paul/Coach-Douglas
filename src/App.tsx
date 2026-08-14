@@ -191,7 +191,7 @@ export default function App() {
             {/* Contact Section at the bottom of the Home Page */}
             <div id="contact-section" className="bg-transparent backdrop-blur-[2px] rounded-3xl border border-neutral-900/60 p-2 sm:p-6 shadow-2xl">
               <ContactSection
-                hideHomeButton={true}
+                hideHomeButton={false}
                 onNavigateHome={() => handleGlobalNavigate('home')}
               />
             </div>

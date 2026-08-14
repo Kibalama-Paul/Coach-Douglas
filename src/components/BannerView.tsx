@@ -118,26 +118,6 @@ export const BannerView = forwardRef<HTMLDivElement, BannerViewProps>(
                 </div>
               </div>
 
-              {/* Mobile Dedicated Navigation Bar (Pills for each page) */}
-              <div className="flex items-center gap-1.5 overflow-x-auto py-1 scrollbar-none md:hidden border-t border-neutral-900 pt-1.5">
-                {allPages.map((page) => {
-                  const Icon = page.icon;
-                  return (
-                    <button
-                      key={page.name}
-                      onClick={() => handleNavClick(page.name)}
-                      className={`px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 transition-all cursor-pointer ${page.highlight
-                          ? 'bg-[#d4af37] text-black shadow-sm font-bold'
-                          : 'bg-neutral-900/90 text-neutral-300 hover:text-white border border-neutral-800'
-                        }`}
-                    >
-                      <Icon className={`w-3 h-3 ${page.highlight ? 'text-black' : 'text-[#d4af37]'}`} />
-                      <span>{page.name}</span>
-                    </button>
-                  );
-                })}
-              </div>
-
               {/* Expanded Mobile Menu Drawer (if toggled) */}
               {mobileMenuOpen && (
                 <div className="md:hidden bg-neutral-950/95 border border-neutral-800 rounded-2xl p-3 shadow-xl space-y-1.5 animate-fadeIn">

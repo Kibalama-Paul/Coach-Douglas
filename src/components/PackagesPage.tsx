@@ -14,7 +14,10 @@ import {
   Dumbbell,
   ShieldCheck,
   Home,
-  ChevronLeft
+  ChevronLeft,
+  MapPin,
+  Mail,
+  Phone
 } from 'lucide-react';
 import { BannerContent } from '../types';
 
@@ -32,6 +35,7 @@ export interface TrainingPlan {
   duration: string;
   priceNum: number;
   priceFormatted: string;
+  priceAed: string;
   popular?: boolean;
   savings?: string;
   description: string;
@@ -44,8 +48,9 @@ export const TRAINING_PLANS: TrainingPlan[] = [
     name: 'Daily 1-on-1 Session',
     category: 'DAILY',
     duration: '60 min',
-    priceNum: 200,
-    priceFormatted: 'AED 200',
+    priceNum: 50,
+    priceFormatted: '€50',
+    priceAed: 'AED 200',
     description: 'High-intensity, focused 60-minute private personal training session.',
     features: [
       '60-Min Private 1-on-1 Coaching',
@@ -58,10 +63,11 @@ export const TRAINING_PLANS: TrainingPlan[] = [
     id: 'weekly-3x',
     name: 'Weekly Training Plan',
     category: 'WEEKLY',
-    duration: '3 times',
-    priceNum: 525,
-    priceFormatted: 'AED 525',
-    savings: 'Save AED 75',
+    duration: '3 time',
+    priceNum: 130,
+    priceFormatted: '€130',
+    priceAed: 'AED 525',
+    savings: 'Save €20',
     description: 'Structured 3-session weekly block for consistent athletic momentum.',
     features: [
       '3 Targeted 1-on-1 Sessions / Week',
@@ -75,8 +81,9 @@ export const TRAINING_PLANS: TrainingPlan[] = [
     name: '1 Month Intensive Transformation',
     category: 'MONTHLY',
     duration: '1 Month',
-    priceNum: 2500,
-    priceFormatted: 'AED 2,500',
+    priceNum: 625,
+    priceFormatted: '€625',
+    priceAed: 'AED 2,500',
     description: 'Comprehensive 4-week foundation to establish discipline, strength, and nutritional habits.',
     features: [
       'Full 1 Month Coaching & Progression',
@@ -88,16 +95,17 @@ export const TRAINING_PLANS: TrainingPlan[] = [
   },
   {
     id: 'monthly-2m',
-    name: '2 Months Hypertrophy & Conditioning',
+    name: '2 Month Hypertrophy & Conditioning',
     category: 'MONTHLY',
-    duration: '2 Months',
-    priceNum: 4000,
-    priceFormatted: 'AED 4,000',
-    savings: 'Save AED 1,000',
+    duration: '2 Month',
+    priceNum: 1000,
+    priceFormatted: '€1,000',
+    priceAed: 'AED 4,000',
+    savings: 'Save €250',
     popular: false,
     description: 'Dedicated 8-week physique recomposition and accelerated metabolic development.',
     features: [
-      'Full 2 Months Periodized Protocol',
+      'Full 2 Month Periodized Protocol',
       'Advanced Nutrition & Macro Adjustments',
       'Weekly Video Technique Form Review',
       'InBody Body Composition Tracking',
@@ -106,12 +114,13 @@ export const TRAINING_PLANS: TrainingPlan[] = [
   },
   {
     id: 'monthly-3m',
-    name: '3 Months Total Physique Mastery',
+    name: '3 Month Total Physique Mastery',
     category: 'MONTHLY',
-    duration: '3 Months',
-    priceNum: 5500,
-    priceFormatted: 'AED 5,500',
-    savings: 'Best Value • Save AED 2,000',
+    duration: '3 Month',
+    priceNum: 1375,
+    priceFormatted: '€1,375',
+    priceAed: 'AED 5,500',
+    savings: 'Best Value • Save €500',
     popular: true,
     description: 'The ultimate 12-week comprehensive transformation for mind, body, and high-performance lifestyle.',
     features: [
@@ -127,7 +136,7 @@ export const TRAINING_PLANS: TrainingPlan[] = [
 
 export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, onGetInTouch }: PackagesPageProps) {
   const [selectedPlanId, setSelectedPlanId] = useState<string>('monthly-3m');
-  const [activeView, setActiveView] = useState<'cards' | 'table'>('cards');
+  const [activeView, setActiveView] = useState<'flyer' | 'cards' | 'table'>('flyer');
 
   const currentPlan = TRAINING_PLANS.find((p) => p.id === selectedPlanId) || TRAINING_PLANS[4];
 
@@ -281,11 +290,23 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
             </p>
           </div>
 
-          {/* View Mode Switcher (Reference Cards vs Markdown Table View) */}
-          <div className="flex items-center gap-2 p-1 bg-neutral-900/90 rounded-full border border-neutral-800 text-xs">
+          {/* View Mode Switcher (Reference Flyer Card vs Overview Cards vs Table View) */}
+          <div className="flex items-center gap-1.5 p-1 bg-neutral-900/90 rounded-full border border-neutral-800 text-xs overflow-x-auto max-w-full">
+            <button
+              onClick={() => setActiveView('flyer')}
+              className={`px-4 py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
+                activeView === 'flyer'
+                  ? 'bg-[#f5c842] text-black shadow-md'
+                  : 'text-neutral-400 hover:text-white'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Official Flyer Card</span>
+            </button>
+
             <button
               onClick={() => setActiveView('cards')}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeView === 'cards'
                   ? 'bg-[#f5c842] text-black shadow-md'
                   : 'text-neutral-400 hover:text-white'
@@ -293,18 +314,196 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
             >
               Overview Cards
             </button>
+
             <button
               onClick={() => setActiveView('table')}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer ${
+              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer whitespace-nowrap ${
                 activeView === 'table'
                   ? 'bg-[#f5c842] text-black shadow-md'
                   : 'text-neutral-400 hover:text-white'
               }`}
             >
-              All Plans Price Table
+              Price Matrix Table
             </button>
           </div>
-        </div>        {/* 1. THREE DISTINCTIVE CARDS (Matches BASIC, EXCLUSIVE, STANDARD design from CodeCraft Reference) */}
+        </div>
+
+        {/* 0. OFFICIAL TRAINING FLYER CARD VIEW (EXACT REPLICA OF USER REFERENCE IMAGE) */}
+        {activeView === 'flyer' && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto w-full space-y-6 select-none"
+          >
+            {/* TOP PANEL: DOUGLAS Fitness Expert & Contact Details */}
+            <div className="relative rounded-3xl bg-[#0c0c0f] border border-neutral-800/90 p-6 sm:p-10 overflow-hidden shadow-2xl backdrop-blur-md">
+              {/* Subtle Geometric Line Motif Backdrop */}
+              <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                {/* Brand Header */}
+                <div className="text-center md:text-left space-y-1">
+                  <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white font-bingo">
+                    DOUGLAS
+                  </h2>
+                  <p className="text-sm sm:text-lg font-semibold tracking-[0.25em] text-neutral-300 uppercase">
+                    Fitness Expert
+                  </p>
+                </div>
+
+                {/* Contact Points */}
+                <div className="flex flex-col items-center md:items-end space-y-2.5 text-xs sm:text-sm font-medium text-neutral-200">
+                  <div className="flex items-center gap-2">
+                    <span className="font-semibold text-white">Dubai, UAE</span>
+                    <MapPin className="w-4 h-4 text-[#f5c842]" />
+                  </div>
+                  <a href="tel:+971529421132" className="flex items-center gap-2 hover:text-[#2eb886] transition-colors font-mono font-semibold">
+                    <span>+971 52 942 1132</span>
+                    <Phone className="w-4 h-4 text-[#2eb886]" />
+                  </a>
+                  <a href="mailto:heavenlydouglas@gmail.com" className="flex items-center gap-2 hover:text-[#f5c842] transition-colors">
+                    <span>heavenlydouglas@gmail.com</span>
+                    <Mail className="w-4 h-4 text-[#f5c842]" />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* BOTTOM PANEL: TRAINING PRICES (EXACT MATCHING GRAPHIC BOXES FROM IMAGE) */}
+            <div className="relative rounded-3xl bg-[#0c0c0f] border border-neutral-800/90 p-6 sm:p-10 overflow-hidden shadow-2xl backdrop-blur-md">
+              {/* Geometric Line Motif Backdrop */}
+              <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
+
+              <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                
+                {/* LEFT SIDE: Vertical Social Handle & Branding */}
+                <div className="md:col-span-4 flex flex-col items-center md:items-start justify-center border-b md:border-b-0 md:border-r border-neutral-800/80 pb-6 md:pb-0 md:pr-8 space-y-4">
+                  <div className="flex items-center gap-3 md:flex-col md:items-start">
+                    <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-neutral-300 font-mono uppercase [writing-mode:horizontal] md:[writing-mode:vertical-lr] md:rotate-180">
+                      @HEALINGHANDS_FITNESS
+                    </span>
+                    <div className="flex md:flex-col items-center gap-3 text-neutral-400">
+                      <Instagram className="w-4 h-4 hover:text-[#E1306C] transition-colors cursor-pointer" />
+                      <Sparkles className="w-4 h-4 hover:text-[#00f2fe] transition-colors cursor-pointer" />
+                      <MessageCircle className="w-4 h-4 hover:text-[#25D366] transition-colors cursor-pointer" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* RIGHT SIDE: TRAINING PRICES GRAPHIC TABLE */}
+                <div className="md:col-span-8 space-y-6">
+                  {/* Header Title with underline matching exact reference image */}
+                  <div className="border-b-2 border-white pb-2">
+                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-widest uppercase font-bingo">
+                      TRAINING PRICES
+                    </h3>
+                  </div>
+
+                  {/* Pricing Rows Grid */}
+                  <div className="space-y-4 font-montserrat">
+                    
+                    {/* DAILY ROW */}
+                    <div 
+                      onClick={() => handleBookSelected('Daily 1-on-1 Session (60 min) — €50')}
+                      className="flex items-center justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all cursor-pointer group"
+                    >
+                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28">
+                        DAILY
+                      </span>
+
+                      <div className="flex items-center gap-3">
+                        {/* 60 min box */}
+                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md">
+                          60 min
+                        </div>
+                        {/* €50 box */}
+                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                          <span>€50</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="h-[1px] bg-neutral-800/80 w-full" />
+
+                    {/* WEEKLY ROW */}
+                    <div 
+                      onClick={() => handleBookSelected('Weekly Training Plan (3 time) — €130')}
+                      className="flex items-center justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all cursor-pointer group"
+                    >
+                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28">
+                        WEEKLY
+                      </span>
+
+                      <div className="flex items-center gap-3">
+                        {/* 3 time box */}
+                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md">
+                          3 time
+                        </div>
+                        {/* €130 box */}
+                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                          <span>€130</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="h-[1px] bg-neutral-800/80 w-full" />
+
+                    {/* MONTHLY BLOCK */}
+                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all">
+                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28 pt-2">
+                        MONTHLY
+                      </span>
+
+                      <div className="flex flex-col space-y-3 w-full sm:w-auto">
+                        {/* 1 Month */}
+                        <div 
+                          onClick={() => handleBookSelected('1 Month Intensive Transformation — €625')}
+                          className="flex items-center justify-end gap-3 cursor-pointer group"
+                        >
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                            1 Month
+                          </div>
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                            <span>€625</span>
+                          </div>
+                        </div>
+
+                        {/* 2 Month */}
+                        <div 
+                          onClick={() => handleBookSelected('2 Month Hypertrophy & Conditioning — €1,000')}
+                          className="flex items-center justify-end gap-3 cursor-pointer group"
+                        >
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                            2 Month
+                          </div>
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                            <span>€1,000</span>
+                          </div>
+                        </div>
+
+                        {/* 3 Month */}
+                        <div 
+                          onClick={() => handleBookSelected('3 Month Total Physique Mastery — €1,375')}
+                          className="flex items-center justify-end gap-3 cursor-pointer group"
+                        >
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
+                            3 Month
+                          </div>
+                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-[#f5c842] border-[#f5c842] text-black font-black text-xs sm:text-sm shadow-lg shadow-amber-500/20 min-w-[90px] text-center">
+                            <span>€1,375</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </motion.div>
+        )}        {/* 1. THREE DISTINCTIVE CARDS (Matches BASIC, EXCLUSIVE, STANDARD design from CodeCraft Reference) */}
         {activeView === 'cards' && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch pt-2">
             
@@ -340,8 +539,8 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
               <div className="space-y-4">
                 <div className="text-center pb-3 border-b border-neutral-800/80">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Single & Weekly Intro</span>
-                  <div className="text-2xl font-black text-white mt-1">AED 200 <span className="text-xs text-neutral-400 font-normal">/ 60 min</span></div>
-                  <div className="text-xs text-amber-400/90 font-medium mt-0.5">Or Weekly (3x): AED 525</div>
+                  <div className="text-2xl font-black text-white mt-1">€50 <span className="text-xs text-neutral-400 font-normal">/ 60 min</span></div>
+                  <div className="text-xs text-amber-400/90 font-medium mt-0.5">Or Weekly (3 time): €130</div>
                 </div>
 
                 <div className="space-y-2.5 text-center text-xs text-neutral-300">
@@ -349,7 +548,7 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
                     <strong className="text-white">DAILY:</strong> 60 Min 1-on-1 Workout
                   </div>
                   <div className="py-1 px-2 rounded-lg bg-neutral-900/60 border border-neutral-800/50">
-                    <strong className="text-white">WEEKLY:</strong> 3 Sessions (AED 525)
+                    <strong className="text-white">WEEKLY:</strong> 3 Sessions (€130)
                   </div>
                   <div className="text-neutral-400 leading-relaxed pt-1">
                     Form & Posture Biomechanical Evaluation
@@ -368,7 +567,7 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleBookSelected('Daily / Weekly Basic Plan (AED 200 - AED 525)');
+                    handleBookSelected('Daily / Weekly Basic Plan (€50 - €130)');
                   }}
                   className="w-full py-2.5 rounded-xl font-bold text-xs bg-neutral-900 hover:bg-neutral-800 text-white border border-neutral-700 transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:border-neutral-500"
                 >
@@ -414,9 +613,9 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
               {/* Card Plans Content */}
               <div className="space-y-4">
                 <div className="text-center pb-3 border-b border-neutral-800">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Complete 3 Months Protocol</span>
-                  <div className="text-3xl font-black text-white mt-1">AED 5,500 <span className="text-xs text-neutral-400 font-normal">/ 3 Months</span></div>
-                  <div className="text-xs text-[#48d89e] font-semibold mt-0.5">Save AED 2,000 • Or 2 Months: AED 4,000</div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Complete 3 Month Protocol</span>
+                  <div className="text-3xl font-black text-white mt-1">€1,375 <span className="text-xs text-neutral-400 font-normal">/ 3 Month</span></div>
+                  <div className="text-xs text-[#48d89e] font-semibold mt-0.5">Save €500 • Or 2 Month: €1,000</div>
                 </div>
 
                 <div className="space-y-2.5 text-center text-xs text-neutral-200">
@@ -446,7 +645,7 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleBookSelected('3 Months Total Physique Mastery (AED 5,500)');
+                    handleBookSelected('3 Month Total Physique Mastery (€1,375)');
                   }}
                   className="w-full py-3 rounded-xl font-extrabold text-xs bg-[#f5c842] hover:bg-amber-300 text-black shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
@@ -488,13 +687,13 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
               <div className="space-y-4">
                 <div className="text-center pb-3 border-b border-neutral-800/80">
                   <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">1 Month Program</span>
-                  <div className="text-2xl font-black text-white mt-1">AED 2,500 <span className="text-xs text-neutral-400 font-normal">/ 1 Month</span></div>
+                  <div className="text-2xl font-black text-[#f5c842] mt-1">€625 <span className="text-xs text-neutral-400 font-normal">/ 1 Month</span></div>
                   <div className="text-xs text-neutral-400 font-medium mt-0.5">Comprehensive Single-Month Block</div>
                 </div>
 
                 <div className="space-y-2.5 text-center text-xs text-neutral-300">
                   <div className="py-1 px-2 rounded-lg bg-neutral-900/60 border border-neutral-800/50">
-                    <strong className="text-white">MONTHLY:</strong> 1 Full Month (AED 2,500)
+                    <strong className="text-white">MONTHLY:</strong> 1 Full Month (€625)
                   </div>
                   <div className="text-neutral-400 leading-relaxed">
                     Customized Resistance & Cardio Structure
@@ -516,9 +715,9 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleBookSelected('1 Month Intensive Transformation (AED 2,500)');
+                    handleBookSelected('1 Month Intensive Transformation (€625)');
                   }}
-                  className="w-full py-2.5 rounded-xl font-bold text-xs bg-neutral-900 hover:bg-neutral-800 text-white border border-neutral-700 transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:border-neutral-500"
+                  className="w-full py-2.5 rounded-xl font-bold text-xs bg-neutral-900 hover:bg-neutral-850 text-white border border-neutral-700 transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:border-neutral-500"
                 >
                   <span>Select Standard Plan</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -678,14 +877,16 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
           </div>
         </div>
 
-        {/* Center: Return to Home button */}
-        <button
-          onClick={onNavigateToHome}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#f5c842] transition-all text-xs font-semibold cursor-pointer group"
-        >
-          <Home className="w-3.5 h-3.5 text-[#f5c842] group-hover:scale-110 transition-transform" />
-          <span>Back to Home</span>
-        </button>
+        {/* Center: Return to Home button (hidden when embedded on home page) */}
+        {!isEmbedded && (
+          <button
+            onClick={onNavigateToHome}
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#f5c842] transition-all text-xs font-semibold cursor-pointer group"
+          >
+            <Home className="w-3.5 h-3.5 text-[#f5c842] group-hover:scale-110 transition-transform" />
+            <span>Back to Home</span>
+          </button>
+        )}
 
         {/* Right: Instagram handle pill in reference style */}
         <div className="flex items-center gap-3">

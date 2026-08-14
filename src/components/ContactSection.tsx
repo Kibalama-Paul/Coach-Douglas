@@ -21,7 +21,8 @@ import {
   Clock,
   Target,
   Dumbbell,
-  ShieldCheck
+  ShieldCheck,
+  ChevronLeft
 } from 'lucide-react';
 import { TrainingTicketCard } from './TrainingTicketCard';
 import { TrainingTicket } from '../types';
@@ -93,45 +94,38 @@ const SOCIAL_LINKS: SocialItem[] = [
 export const PACKAGES_OPTIONS = [
   {
     id: '3-months',
-    name: '3 Months Total Physique Mastery',
-    price: 'AED 5,500',
-    duration: '3 Months (90 Days)',
+    name: '3 Month Total Physique Mastery',
+    price: '€1,375',
+    duration: '3 Month (90 Days)',
     daysValid: 90,
   },
   {
     id: '2-months',
-    name: '2 Months Hypertrophy & Conditioning',
-    price: 'AED 4,000',
-    duration: '2 Months (60 Days)',
+    name: '2 Month Hypertrophy & Conditioning',
+    price: '€1,000',
+    duration: '2 Month (60 Days)',
     daysValid: 60,
   },
   {
     id: '1-month',
     name: '1 Month Intensive Transformation',
-    price: 'AED 2,500',
+    price: '€625',
     duration: '1 Month (30 Days)',
     daysValid: 30,
   },
   {
     id: 'weekly',
-    name: 'Weekly Training Plan (3 Sessions)',
-    price: 'AED 525',
+    name: 'Weekly Training Plan (3 time)',
+    price: '€130',
     duration: 'Weekly (14 Days validity)',
     daysValid: 14,
   },
   {
     id: 'daily',
     name: 'Daily 1-on-1 Session (60 min)',
-    price: 'AED 200',
+    price: '€50',
     duration: '1 Session (7 Days validity)',
     daysValid: 7,
-  },
-  {
-    id: 'vip-custom',
-    name: 'Custom VIP Protocol',
-    price: 'Bespoke Rate',
-    duration: 'Custom Schedule (30 Days)',
-    daysValid: 30,
   },
 ];
 
@@ -658,20 +652,20 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
 
         {/* ================= HOME / BACK TO TOP BUTTON ABOVE FOOTER ================= */}
         {!hideHomeButton && (
-          <div className="flex items-center justify-center pt-2">
+          <div className="flex items-center justify-center pt-4 pb-2">
             <button
               onClick={() => {
                 if (onNavigateHome) {
                   onNavigateHome();
-                } else {
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
+                window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="group relative flex items-center gap-2 px-5 py-2 rounded-full bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 hover:border-[#d4af37]/60 text-neutral-300 hover:text-white text-xs sm:text-sm font-semibold transition-all shadow-lg hover:shadow-[#d4af37]/10 cursor-pointer"
+              className="group relative flex items-center gap-2 px-6 py-2.5 rounded-full bg-neutral-900 hover:bg-neutral-850 border border-neutral-800 hover:border-[#d4af37]/60 text-neutral-300 hover:text-white text-xs sm:text-sm font-semibold transition-all shadow-lg hover:shadow-[#d4af37]/10 cursor-pointer"
             >
+              <ChevronLeft className="w-4 h-4 text-[#d4af37] group-hover:-translate-x-0.5 transition-transform" />
               <Home className="w-4 h-4 text-[#d4af37] group-hover:scale-110 transition-transform" />
-              <span>Home</span>
-              <ArrowUp className="w-3.5 h-3.5 text-neutral-500 group-hover:text-[#d4af37] group-hover:-translate-y-0.5 transition-all" />
+              <span>Back to Home</span>
+              <ArrowUp className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#d4af37] group-hover:-translate-y-0.5 transition-all" />
             </button>
           </div>
         )}
