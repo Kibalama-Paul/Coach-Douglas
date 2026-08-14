@@ -17,7 +17,17 @@ import {
   ChevronLeft,
   MapPin,
   Mail,
-  Phone
+  Phone,
+  UserCheck,
+  Ruler,
+  Activity,
+  FileText,
+  Target,
+  Compass,
+  ClipboardList,
+  TrendingUp,
+  Globe,
+  User
 } from 'lucide-react';
 import { BannerContent } from '../types';
 
@@ -28,120 +38,189 @@ interface PackagesPageProps {
   onGetInTouch?: (pkgName?: string) => void;
 }
 
-export interface TrainingPlan {
+export interface TrainingOption {
   id: string;
   name: string;
-  category: 'DAILY' | 'WEEKLY' | 'MONTHLY';
-  duration: string;
-  priceNum: number;
-  priceFormatted: string;
-  priceAed: string;
-  popular?: boolean;
-  savings?: string;
+  badge: string;
+  category: string;
   description: string;
   features: string[];
+  formats: ('One-on-One Personal Training' | 'Online Coaching')[];
+  accent: string;
+  glowColor: string;
 }
 
-export const TRAINING_PLANS: TrainingPlan[] = [
+export const PERSONAL_TRAINING_OPTIONS: TrainingOption[] = [
   {
-    id: 'daily-60',
-    name: 'Daily 1-on-1 Session',
-    category: 'DAILY',
-    duration: '60 min',
-    priceNum: 50,
-    priceFormatted: '€50',
-    priceAed: 'AED 200',
-    description: 'High-intensity, focused 60-minute private personal training session.',
+    id: 'daily',
+    name: 'DAILY',
+    badge: 'Single Session Focus',
+    category: 'Session Intake',
+    description: '60-minute personal training session',
     features: [
-      '60-Min Private 1-on-1 Coaching',
-      'Form & Biomechanics Correction',
-      'High-Intensity Strength Protocol',
-      'Immediate Session Feedback',
+      '60 Min Intensive 1-on-1 Coaching',
+      'Immediate Biomechanical & Technique Evaluation',
+      'Post-Workout Recovery Guidance & Form Review'
     ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#FF6B35',
+    glowColor: 'rgba(255, 107, 53, 0.25)',
   },
   {
-    id: 'weekly-3x',
-    name: 'Weekly Training Plan',
-    category: 'WEEKLY',
-    duration: '3 time',
-    priceNum: 130,
-    priceFormatted: '€130',
-    priceAed: 'AED 525',
-    savings: 'Save €20',
-    description: 'Structured 3-session weekly block for consistent athletic momentum.',
+    id: 'weekly',
+    name: 'WEEKLY',
+    badge: 'High Frequency',
+    category: 'Weekly Impulse',
+    description: '3–4 training sessions per week',
     features: [
-      '3 Targeted 1-on-1 Sessions / Week',
-      'Progressive Muscle Overload Plan',
-      'Workout Routine Guidelines',
-      'Active Recovery & Mobility Drill',
+      '3–4 High-Output Sessions Per Week',
+      'Targeted Muscle Group Split Programming',
+      'Weekly Workload & Recovery Audit'
     ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#10B981',
+    glowColor: 'rgba(16, 185, 129, 0.25)',
   },
   {
-    id: 'monthly-1m',
-    name: '1 Month Intensive Transformation',
-    category: 'MONTHLY',
-    duration: '1 Month',
-    priceNum: 625,
-    priceFormatted: '€625',
-    priceAed: 'AED 2,500',
-    description: 'Comprehensive 4-week foundation to establish discipline, strength, and nutritional habits.',
+    id: 'one-month',
+    name: 'ONE MONTH',
+    badge: '4-Week Program',
+    category: 'Foundation Block',
+    description: 'Structured personal training/coaching program',
     features: [
-      'Full 1 Month Coaching & Progression',
-      'Personalized Macronutrient & Calorie Plan',
-      'Bi-Weekly Technique & Metric Review',
-      'Workout & Cardio Schedule',
-      'Mobile Workout Tracking & Support',
+      'Customized Resistance & Cardio Structure',
+      'Macronutrient Breakdown & Meal Planning',
+      'Bi-Weekly Form & Biometric Audits'
     ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#EC4899',
+    glowColor: 'rgba(236, 72, 153, 0.25)',
   },
   {
-    id: 'monthly-2m',
-    name: '2 Month Hypertrophy & Conditioning',
-    category: 'MONTHLY',
-    duration: '2 Month',
-    priceNum: 1000,
-    priceFormatted: '€1,000',
-    priceAed: 'AED 4,000',
-    savings: 'Save €250',
-    popular: false,
-    description: 'Dedicated 8-week physique recomposition and accelerated metabolic development.',
+    id: 'two-months',
+    name: 'TWO MONTHS',
+    badge: '8-Week Program',
+    category: 'Progressive Shred & Build',
+    description: 'Progressive transformation program',
     features: [
-      'Full 2 Month Periodized Protocol',
-      'Advanced Nutrition & Macro Adjustments',
-      'Weekly Video Technique Form Review',
-      'InBody Body Composition Tracking',
-      '24/7 WhatsApp Accountability',
+      'Phase 1 & Phase 2 Periodized Loading Split',
+      'Targeted Body Recomposition Strategy',
+      'Biometric Check-ins & InBody Scans'
     ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#FACC15',
+    glowColor: 'rgba(250, 204, 21, 0.25)',
   },
   {
-    id: 'monthly-3m',
-    name: '3 Month Total Physique Mastery',
-    category: 'MONTHLY',
-    duration: '3 Month',
-    priceNum: 1375,
-    priceFormatted: '€1,375',
-    priceAed: 'AED 5,500',
-    savings: 'Best Value • Save €500',
-    popular: true,
-    description: 'The ultimate 12-week comprehensive transformation for mind, body, and high-performance lifestyle.',
+    id: 'three-months',
+    name: 'THREE MONTHS',
+    badge: '12-Week Protocol',
+    category: 'Total Physique Mastery',
+    description: 'Comprehensive transformation and performance program',
     features: [
-      'Complete 12-Week Transformation Roadmap',
-      'Bespoke Hypertrophy & Fat Loss Blueprint',
-      'Full Nutrition, Meal Planning & Supplementation',
-      'Weekly Biofeedback & Milestone Assessments',
-      'VIP 24/7 Priority WhatsApp Access',
-      'Executive Stress & Recovery Optimization',
+      '12-Week Complete Body & Mind Overhaul',
+      'Custom Macro, Supplementation & Habit Audit',
+      '24/7 VIP Priority Direct WhatsApp Mentorship'
     ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#8B5CF6',
+    glowColor: 'rgba(139, 92, 246, 0.25)',
+  },
+  {
+    id: 'one-year',
+    name: 'ONE YEAR',
+    badge: '52-Week Mastery',
+    category: 'Long-Term Lifestyle & Performance',
+    description: 'Long-term fitness, lifestyle and performance coaching',
+    features: [
+      'Year-Round Periodization & Peak Performance Phases',
+      'Continuous Biomechanical Calibration & Joint Health',
+      'Complete Lifestyle, Executive & Athletic Mastery'
+    ],
+    formats: ['One-on-One Personal Training', 'Online Coaching'],
+    accent: '#FF6B35',
+    glowColor: 'rgba(255, 107, 53, 0.3)',
+  },
+];
+
+export const INCLUDED_FEATURES = [
+  {
+    title: 'One-on-One Assessment',
+    desc: 'Comprehensive initial evaluation of physical baseline, kinetic movement patterns, and posture.',
+    icon: UserCheck,
+    color: '#FF6B35',
+  },
+  {
+    title: 'Body Measurements',
+    desc: 'Precise circumference tracking to monitor structural muscle growth and body composition changes.',
+    icon: Ruler,
+    color: '#10B981',
+  },
+  {
+    title: 'BMI Assessment',
+    desc: 'Scientific body mass index and health ratio calculation for accurate data-driven tracking.',
+    icon: Activity,
+    color: '#EC4899',
+  },
+  {
+    title: 'Client Bio/Profile',
+    desc: 'Customized digital athlete profile documenting your training background, biometrics, and milestones.',
+    icon: FileText,
+    color: '#FACC15',
+  },
+  {
+    title: 'Personal Goals & Aspirations',
+    desc: 'Deep goal alignment consultation targeting hyper-specific aesthetic, strength, and health targets.',
+    icon: Target,
+    color: '#8B5CF6',
+  },
+  {
+    title: 'Fitness & Lifestyle Assessment',
+    desc: 'Holistic audit of daily activity levels, sleep hygiene, stress management, and nutrition habits.',
+    icon: Compass,
+    color: '#FF6B35',
+  },
+  {
+    title: 'Functional Training Programs',
+    desc: 'Dynamic multi-planar routines engineered to enhance real-world athletic power, agility, and core stability.',
+    icon: Dumbbell,
+    color: '#10B981',
+  },
+  {
+    title: 'Corrective Exercise Programs',
+    desc: 'Targeted joint decompression and kinetic mobility drills to resolve postural imbalances and prevent injury.',
+    icon: ShieldCheck,
+    color: '#EC4899',
+  },
+  {
+    title: 'Personalized Training Plans',
+    desc: 'Bespoke workout split blueprints tailored to your body type, timeline, and recovery capacity.',
+    icon: ClipboardList,
+    color: '#FACC15',
+  },
+  {
+    title: 'Progress Tracking',
+    desc: 'Real-time logging of progressive overload gains, body fat loss, and strength performance markers.',
+    icon: TrendingUp,
+    color: '#8B5CF6',
+  },
+  {
+    title: 'Ongoing Coaching & Guidance',
+    desc: '24/7 direct mentor access, real-time strategy adjustments, and unrelenting motivation from Coach Douglas.',
+    icon: Award,
+    color: '#10B981',
   },
 ];
 
 export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, onGetInTouch }: PackagesPageProps) {
-  const [selectedPlanId, setSelectedPlanId] = useState<string>('monthly-3m');
-  const [activeView, setActiveView] = useState<'flyer' | 'cards' | 'table'>('flyer');
+  const [selectedOptionId, setSelectedOptionId] = useState<string>('three-months');
+  const [selectedFormat, setSelectedFormat] = useState<'One-on-One Personal Training' | 'Online Coaching'>('One-on-One Personal Training');
 
-  const currentPlan = TRAINING_PLANS.find((p) => p.id === selectedPlanId) || TRAINING_PLANS[4];
+  const currentOption = PERSONAL_TRAINING_OPTIONS.find((o) => o.id === selectedOptionId) || PERSONAL_TRAINING_OPTIONS[4];
 
-  const handleBookSelected = (planName?: string) => {
-    const targetName = planName || `${currentPlan.name} (${currentPlan.priceFormatted})`;
+  const handleBookSelected = (optionName?: string, formatOverride?: string) => {
+    const targetFormat = formatOverride || selectedFormat;
+    const targetName = optionName || `${currentOption.name} (${currentOption.description}) — Mode: ${targetFormat}`;
     if (onGetInTouch) {
       onGetInTouch(targetName);
     }
@@ -150,27 +229,25 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
   return (
     <div className="w-full bg-transparent text-white min-h-[900px] rounded-3xl border border-neutral-900/60 shadow-2xl p-3.5 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-between relative overflow-hidden font-montserrat select-none backdrop-blur-[2px]">
       
-      {/* Studio Top Spotlights - Faithful to reference image atmosphere */}
+      {/* Studio Ambient Glows */}
       <div className="absolute -top-16 left-1/4 w-96 h-80 bg-gradient-to-b from-white/10 via-amber-200/5 to-transparent blur-3xl pointer-events-none transform -rotate-12" />
       <div className="absolute -top-16 right-1/4 w-96 h-80 bg-gradient-to-b from-white/10 via-amber-200/5 to-transparent blur-3xl pointer-events-none transform rotate-12" />
       
-      {/* Subtle Brand Accent Glows (10% Gold, 5% Healing Green) */}
-      <div className="absolute -top-36 -right-36 w-96 h-96 rounded-full bg-[#2eb886]/10 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-36 -left-36 w-96 h-96 rounded-full bg-[#d4af37]/10 blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-radial from-[#d4af37]/5 via-transparent to-transparent blur-3xl pointer-events-none" />
+      <div className="absolute -top-36 -right-36 w-96 h-96 rounded-full bg-[#10B981]/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-36 -left-36 w-96 h-96 rounded-full bg-[#FF6B35]/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-radial from-[#FACC15]/5 via-transparent to-transparent blur-3xl pointer-events-none" />
 
       {/* Top Navigation Header - Hidden on Home Page when isEmbedded is true */}
       {!isEmbedded && (
         <header className="flex items-center justify-between gap-3 sm:gap-4 w-full shrink-0 relative z-20 pb-4 border-b border-neutral-900/80">
           <div className="flex items-center gap-3 sm:gap-4">
-            {/* Direct Home Button */}
             <button
               onClick={onNavigateToHome}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#f5c842] transition-all text-xs font-bold shadow-sm cursor-pointer group"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#FF6B35] transition-all text-xs font-bold shadow-sm cursor-pointer group"
               title="Return to Home Page"
             >
-              <ChevronLeft className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#f5c842] transition-colors" />
-              <Home className="w-3.5 h-3.5 text-[#f5c842]" />
+              <ChevronLeft className="w-3.5 h-3.5 text-neutral-400 group-hover:text-[#FF6B35] transition-colors" />
+              <Home className="w-3.5 h-3.5 text-[#FF6B35]" />
               <span className="hidden sm:inline">Home</span>
             </button>
 
@@ -179,10 +256,10 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
               onClick={onNavigateToHome}
               title="Back to Home"
             >
-              <div className="w-2.5 h-2.5 rounded-full bg-[#2eb886] ring-4 ring-[#2eb886]/20 animate-pulse" />
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-1 group-hover:text-amber-400 transition-colors">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#10B981] ring-4 ring-[#10B981]/20 animate-pulse" />
+              <span className="text-xl sm:text-2xl font-bold tracking-tight text-white flex items-center gap-1 group-hover:text-[#FF6B35] transition-colors">
                 {content.brandName}
-                <span className="text-[#d4af37] text-xl font-black leading-none">.</span>
+                <span className="text-[#FF6B35] text-xl font-black leading-none">.</span>
               </span>
             </div>
           </div>
@@ -202,13 +279,13 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
                     }}
                     className={`transition-colors cursor-pointer tracking-wide flex items-center gap-1.5 ${
                       isPackages
-                        ? 'text-[#f5c842] font-bold border-b-2 border-[#f5c842] pb-0.5'
+                        ? 'text-[#FF6B35] font-bold border-b-2 border-[#FF6B35] pb-0.5'
                         : isHome
                         ? 'text-neutral-300 hover:text-white font-semibold'
                         : 'hover:text-white text-neutral-400'
                     }`}
                   >
-                    {isHome && <Home className="w-3.5 h-3.5 text-[#f5c842]" />}
+                    {isHome && <Home className="w-3.5 h-3.5 text-[#FF6B35]" />}
                     {link}
                   </span>
                 );
@@ -217,7 +294,7 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
 
             <div
               onClick={() => handleBookSelected()}
-              className="group flex items-center gap-2 sm:gap-3 bg-white text-black pl-4 sm:pl-5 pr-2 py-1.5 sm:py-2 rounded-full font-bold text-xs sm:text-sm tracking-tight hover:bg-amber-400 transition-all shadow-lg hover:shadow-amber-500/20 cursor-pointer"
+              className="group flex items-center gap-2 sm:gap-3 bg-white text-black pl-4 sm:pl-5 pr-2 py-1.5 sm:py-2 rounded-full font-bold text-xs sm:text-sm tracking-tight hover:bg-[#FF6B35] transition-all shadow-lg hover:shadow-orange-500/20 cursor-pointer"
             >
               <span>{content.ctaText}</span>
               <span className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-neutral-900 transition-colors">
@@ -229,642 +306,341 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
       )}
 
       {/* Main Content Area */}
-      <main className="py-6 sm:py-8 relative z-10 space-y-8 max-w-6xl mx-auto w-full">
+      <main className="py-6 sm:py-8 relative z-10 space-y-12 max-w-6xl mx-auto w-full">
         
-        {/* HERO SECTION: Glowing Gold "Packages" with Bounding Transformation Box & Cursor Click (Exact CodeCraft Graphic Style) */}
+        {/* HERO HEADER: Glowing Bounding Frame for PERSONAL TRAINING OPTIONS */}
         <div className="flex flex-col items-center justify-center text-center space-y-4 pt-2">
           
-          {/* Glowing Transformation Bounding Box */}
-          <div className="relative inline-block px-8 py-3.5 sm:px-14 sm:py-5 my-2">
-            {/* The gold bounding frame */}
-            <div className="absolute inset-0 border-[1.5px] border-[#e5a824] shadow-[0_0_25px_rgba(229,168,36,0.35)] rounded-none pointer-events-none" />
+          <div className="relative inline-block px-6 py-3.5 sm:px-12 sm:py-5 my-2">
+            {/* Orange/Gold Bounding Frame */}
+            <div className="absolute inset-0 border-[1.5px] border-[#FF6B35] shadow-[0_0_30px_rgba(255,107,53,0.35)] rounded-none pointer-events-none" />
             
-            {/* 8 Control Handles on Corners & Midpoints */}
-            {/* Top-Left */}
-            <span className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Top-Center */}
-            <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Top-Right */}
-            <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Right-Center */}
-            <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Bottom-Center */}
-            <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Left-Center */}
-            <span className="absolute top-1/2 -left-1.5 -translate-y-1/2 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Bottom-Left */}
-            <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
-            {/* Bottom-Right */}
-            <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[#ffea79] border border-black shadow-[0_0_8px_#f5c842]" />
+            {/* Control Handles on Corners & Midpoints */}
+            <span className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute top-1/2 -right-1.5 -translate-y-1/2 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute top-1/2 -left-1.5 -translate-y-1/2 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
+            <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[#FACC15] border border-black shadow-[0_0_8px_#FACC15]" />
 
-            {/* 3D Cursor pointer clicking the bottom-right corner with radiating sparkles */}
+            {/* 3D Cursor pointer clicking the corner */}
             <div className="absolute -bottom-5 -right-7 sm:-bottom-7 sm:-right-9 z-20 flex items-start pointer-events-none select-none">
-              {/* Sparkle rays */}
               <div className="absolute -top-2 -left-2 w-7 h-7 flex items-center justify-center">
-                <div className="w-1.5 h-1.5 bg-[#fff3a8] rounded-full shadow-[0_0_12px_#ffe066]" />
-                <span className="absolute w-4 h-0.5 bg-[#ffe066]/90 rotate-45 shadow-[0_0_6px_#ffea79]" />
-                <span className="absolute w-4 h-0.5 bg-[#ffe066]/90 -rotate-45 shadow-[0_0_6px_#ffea79]" />
-                <span className="absolute w-0.5 h-4 bg-[#ffe066]/90 shadow-[0_0_6px_#ffea79]" />
-                <span className="absolute w-4 h-0.5 bg-[#ffe066]/90 shadow-[0_0_6px_#ffea79]" />
+                <div className="w-1.5 h-1.5 bg-[#FACC15] rounded-full shadow-[0_0_12px_#FACC15]" />
+                <span className="absolute w-4 h-0.5 bg-[#FF6B35]/90 rotate-45" />
+                <span className="absolute w-4 h-0.5 bg-[#FF6B35]/90 -rotate-45" />
               </div>
-              {/* Glossy 3D Pointer Cursor */}
               <svg className="w-7 h-7 sm:w-9 sm:h-9 drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] filter" viewBox="0 0 24 24" fill="none">
                 <path d="M4 2L20 10L12 13L9 21L4 2Z" fill="#ffffff" stroke="#1c1c1e" strokeWidth="1.5" strokeLinejoin="round" />
                 <path d="M6 5.5L16.5 10.8L11.5 12.8L9.5 17.5L6 5.5Z" fill="#f4f4f6" />
               </svg>
             </div>
 
-            {/* Bold 3D Golden "Packages" Title */}
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-b from-[#fff6bb] via-[#f5c842] to-[#b38316] bg-clip-text text-transparent filter drop-shadow-[0_4px_16px_rgba(245,200,66,0.45)] uppercase">
-              Packages
+            {/* Main Header Title */}
+            <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight bg-gradient-to-b from-white via-[#FF6B35] to-[#FACC15] bg-clip-text text-transparent filter drop-shadow-[0_4px_16px_rgba(255,107,53,0.35)] uppercase">
+              PERSONAL TRAINING OPTIONS
             </h1>
           </div>
 
-          {/* Subheading & Description */}
-          <div className="space-y-1 max-w-2xl mx-auto px-4">
-            <h2 className="text-sm sm:text-base font-bold tracking-widest text-[#f5c842] uppercase">
-              CHOOSE YOUR TRAINING PLAN
+          {/* Subtitle */}
+          <div className="space-y-1.5 max-w-2xl mx-auto px-4">
+            <h2 className="text-xs sm:text-sm font-bold tracking-widest text-[#10B981] uppercase flex items-center justify-center gap-2">
+              <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+              10 YEARS EXPERIENCE • BESPOKE PROTOCOLS
             </h2>
-            <p className="text-xs sm:text-sm text-neutral-300 font-medium">
-              Flexible training options designed to fit your schedule and fitness goals.
+            <p className="text-xs sm:text-sm text-neutral-300 font-medium leading-relaxed">
+              Select your preferred duration. All options can be delivered through dedicated <strong className="text-white">One-on-One Personal Training</strong> or <strong className="text-white">Worldwide Online Coaching</strong>.
             </p>
-          </div>
-
-          {/* View Mode Switcher (Reference Flyer Card vs Overview Cards vs Table View) */}
-          <div className="flex items-center gap-1.5 p-1 bg-neutral-900/90 rounded-full border border-neutral-800 text-xs overflow-x-auto max-w-full">
-            <button
-              onClick={() => setActiveView('flyer')}
-              className={`px-4 py-1.5 rounded-full font-bold transition-all cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                activeView === 'flyer'
-                  ? 'bg-[#f5c842] text-black shadow-md'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Official Flyer Card</span>
-            </button>
-
-            <button
-              onClick={() => setActiveView('cards')}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                activeView === 'cards'
-                  ? 'bg-[#f5c842] text-black shadow-md'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
-            >
-              Overview Cards
-            </button>
-
-            <button
-              onClick={() => setActiveView('table')}
-              className={`px-4 py-1.5 rounded-full font-semibold transition-all cursor-pointer whitespace-nowrap ${
-                activeView === 'table'
-                  ? 'bg-[#f5c842] text-black shadow-md'
-                  : 'text-neutral-400 hover:text-white'
-              }`}
-            >
-              Price Matrix Table
-            </button>
           </div>
         </div>
 
-        {/* 0. OFFICIAL TRAINING FLYER CARD VIEW (EXACT REPLICA OF USER REFERENCE IMAGE) */}
-        {activeView === 'flyer' && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto w-full space-y-6 select-none"
-          >
-            {/* TOP PANEL: DOUGLAS Fitness Expert & Contact Details */}
-            <div className="relative rounded-3xl bg-[#0c0c0f] border border-neutral-800/90 p-6 sm:p-10 overflow-hidden shadow-2xl backdrop-blur-md">
-              {/* Subtle Geometric Line Motif Backdrop */}
-              <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-              <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                {/* Brand Header */}
-                <div className="text-center md:text-left space-y-1">
-                  <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-white font-bingo">
-                    DOUGLAS
-                  </h2>
-                  <p className="text-sm sm:text-lg font-semibold tracking-[0.25em] text-neutral-300 uppercase">
-                    Fitness Expert
-                  </p>
-                </div>
-
-                {/* Contact Points */}
-                <div className="flex flex-col items-center md:items-end space-y-2.5 text-xs sm:text-sm font-medium text-neutral-200">
-                  <div className="flex items-center gap-2">
-                    <span className="font-semibold text-white">Dubai, UAE</span>
-                    <MapPin className="w-4 h-4 text-[#f5c842]" />
-                  </div>
-                  <a href="tel:+971529421132" className="flex items-center gap-2 hover:text-[#2eb886] transition-colors font-mono font-semibold">
-                    <span>+971 52 942 1132</span>
-                    <Phone className="w-4 h-4 text-[#2eb886]" />
-                  </a>
-                  <a href="mailto:heavenlydouglas@gmail.com" className="flex items-center gap-2 hover:text-[#f5c842] transition-colors">
-                    <span>heavenlydouglas@gmail.com</span>
-                    <Mail className="w-4 h-4 text-[#f5c842]" />
-                  </a>
-                </div>
-              </div>
+        {/* FORMAT SELECTION BANNER: ONE-ON-ONE VS ONLINE COACHING */}
+        <div className="bg-[#0e0e13]/90 rounded-3xl border border-neutral-800/90 p-5 sm:p-7 shadow-xl backdrop-blur-md space-y-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-neutral-800/80">
+            <div>
+              <span className="text-[11px] font-bold text-[#FACC15] uppercase tracking-wider block">Coaching Delivery Mode</span>
+              <h3 className="text-lg sm:text-xl font-black text-white uppercase tracking-tight">
+                Choose Your Coaching Format
+              </h3>
             </div>
-
-            {/* BOTTOM PANEL: TRAINING PRICES (EXACT MATCHING GRAPHIC BOXES FROM IMAGE) */}
-            <div className="relative rounded-3xl bg-[#0c0c0f] border border-neutral-800/90 p-6 sm:p-10 overflow-hidden shadow-2xl backdrop-blur-md">
-              {/* Geometric Line Motif Backdrop */}
-              <div className="absolute inset-0 opacity-[0.05] bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none" />
-
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
-                
-                {/* LEFT SIDE: Vertical Social Handle & Branding */}
-                <div className="md:col-span-4 flex flex-col items-center md:items-start justify-center border-b md:border-b-0 md:border-r border-neutral-800/80 pb-6 md:pb-0 md:pr-8 space-y-4">
-                  <div className="flex items-center gap-3 md:flex-col md:items-start">
-                    <span className="text-xs sm:text-sm font-bold tracking-[0.2em] text-neutral-300 font-mono uppercase [writing-mode:horizontal] md:[writing-mode:vertical-lr] md:rotate-180">
-                      @HEALINGHANDS_FITNESS
-                    </span>
-                    <div className="flex md:flex-col items-center gap-3 text-neutral-400">
-                      <Instagram className="w-4 h-4 hover:text-[#E1306C] transition-colors cursor-pointer" />
-                      <Sparkles className="w-4 h-4 hover:text-[#00f2fe] transition-colors cursor-pointer" />
-                      <MessageCircle className="w-4 h-4 hover:text-[#25D366] transition-colors cursor-pointer" />
-                    </div>
-                  </div>
-                </div>
-
-                {/* RIGHT SIDE: TRAINING PRICES GRAPHIC TABLE */}
-                <div className="md:col-span-8 space-y-6">
-                  {/* Header Title with underline matching exact reference image */}
-                  <div className="border-b-2 border-white pb-2">
-                    <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-widest uppercase font-bingo">
-                      TRAINING PRICES
-                    </h3>
-                  </div>
-
-                  {/* Pricing Rows Grid */}
-                  <div className="space-y-4 font-montserrat">
-                    
-                    {/* DAILY ROW */}
-                    <div 
-                      onClick={() => handleBookSelected('Daily 1-on-1 Session (60 min) — €50')}
-                      className="flex items-center justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all cursor-pointer group"
-                    >
-                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28">
-                        DAILY
-                      </span>
-
-                      <div className="flex items-center gap-3">
-                        {/* 60 min box */}
-                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md">
-                          60 min
-                        </div>
-                        {/* €50 box */}
-                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                          <span>€50</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="h-[1px] bg-neutral-800/80 w-full" />
-
-                    {/* WEEKLY ROW */}
-                    <div 
-                      onClick={() => handleBookSelected('Weekly Training Plan (3 time) — €130')}
-                      className="flex items-center justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all cursor-pointer group"
-                    >
-                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28">
-                        WEEKLY
-                      </span>
-
-                      <div className="flex items-center gap-3">
-                        {/* 3 time box */}
-                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md">
-                          3 time
-                        </div>
-                        {/* €130 box */}
-                        <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                          <span>€130</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="h-[1px] bg-neutral-800/80 w-full" />
-
-                    {/* MONTHLY BLOCK */}
-                    <div className="flex flex-col sm:flex-row items-start justify-between gap-4 p-2 rounded-2xl hover:bg-white/5 transition-all">
-                      <span className="text-base sm:text-lg font-black text-white uppercase tracking-wider w-28 pt-2">
-                        MONTHLY
-                      </span>
-
-                      <div className="flex flex-col space-y-3 w-full sm:w-auto">
-                        {/* 1 Month */}
-                        <div 
-                          onClick={() => handleBookSelected('1 Month Intensive Transformation — €625')}
-                          className="flex items-center justify-end gap-3 cursor-pointer group"
-                        >
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                            1 Month
-                          </div>
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                            <span>€625</span>
-                          </div>
-                        </div>
-
-                        {/* 2 Month */}
-                        <div 
-                          onClick={() => handleBookSelected('2 Month Hypertrophy & Conditioning — €1,000')}
-                          className="flex items-center justify-end gap-3 cursor-pointer group"
-                        >
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                            2 Month
-                          </div>
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-white text-black group-hover:bg-[#f5c842] group-hover:border-[#f5c842] transition-colors font-black text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                            <span>€1,000</span>
-                          </div>
-                        </div>
-
-                        {/* 3 Month */}
-                        <div 
-                          onClick={() => handleBookSelected('3 Month Total Physique Mastery — €1,375')}
-                          className="flex items-center justify-end gap-3 cursor-pointer group"
-                        >
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white text-white font-bold text-xs sm:text-sm shadow-md min-w-[90px] text-center">
-                            3 Month
-                          </div>
-                          <div className="px-4 sm:px-6 py-2.5 rounded-xl border-2 border-white bg-[#f5c842] border-[#f5c842] text-black font-black text-xs sm:text-sm shadow-lg shadow-amber-500/20 min-w-[90px] text-center">
-                            <span>€1,375</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </motion.div>
-        )}        {/* 1. THREE DISTINCTIVE CARDS (Matches BASIC, EXCLUSIVE, STANDARD design from CodeCraft Reference) */}
-        {activeView === 'cards' && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 items-stretch pt-2">
             
-            {/* LEFT CARD: BASIC (Daily & Weekly Flexible Options) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              onClick={() => setSelectedPlanId('daily-60')}
-              className={`relative bg-[#0d0d11]/90 rounded-3xl p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 border cursor-pointer group ${
-                selectedPlanId === 'daily-60' || selectedPlanId === 'weekly-3x'
-                  ? 'border-neutral-500 shadow-xl shadow-white/5 ring-1 ring-neutral-400/30'
-                  : 'border-neutral-800/90 hover:border-neutral-700'
-              }`}
-            >
-              {/* Header Tab Pill with Yellow Cursor Accent */}
-              <div className="relative mb-6">
-                <div className="w-full py-2.5 rounded-2xl bg-neutral-900 border border-neutral-700/80 flex items-center justify-center shadow-inner">
-                  <span className="text-sm font-extrabold tracking-widest text-white uppercase">
-                    BASIC
-                  </span>
-                </div>
-                {/* Yellow Cursor Accent Pinning the Corner */}
-                <div className="absolute -top-1.5 -right-1.5 w-6 h-6 flex items-center justify-center pointer-events-none">
-                  <svg className="w-5 h-5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] filter" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 2L20 10L12 13L9 21L4 2Z" fill="#f5c842" stroke="#000000" strokeWidth="1.5" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
+            {/* Format Selector Pills */}
+            <div className="flex items-center gap-2 bg-neutral-950 p-1.5 rounded-2xl border border-neutral-800">
+              <button
+                onClick={() => setSelectedFormat('One-on-One Personal Training')}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                  selectedFormat === 'One-on-One Personal Training'
+                    ? 'bg-[#FF6B35] text-black shadow-lg shadow-orange-500/20'
+                    : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                <Dumbbell className="w-3.5 h-3.5" />
+                <span>One-on-One Personal Training</span>
+              </button>
 
-              {/* Card Plans Content */}
-              <div className="space-y-4">
-                <div className="text-center pb-3 border-b border-neutral-800/80">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Single & Weekly Intro</span>
-                  <div className="text-2xl font-black text-white mt-1">€50 <span className="text-xs text-neutral-400 font-normal">/ 60 min</span></div>
-                  <div className="text-xs text-amber-400/90 font-medium mt-0.5">Or Weekly (3 time): €130</div>
-                </div>
-
-                <div className="space-y-2.5 text-center text-xs text-neutral-300">
-                  <div className="py-1 px-2 rounded-lg bg-neutral-900/60 border border-neutral-800/50">
-                    <strong className="text-white">DAILY:</strong> 60 Min 1-on-1 Workout
-                  </div>
-                  <div className="py-1 px-2 rounded-lg bg-neutral-900/60 border border-neutral-800/50">
-                    <strong className="text-white">WEEKLY:</strong> 3 Sessions (€130)
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed pt-1">
-                    Form & Posture Biomechanical Evaluation
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    Personalized Workout Plan & Direct Feedback
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    User Training Manual (Standard Issue)
-                  </div>
-                </div>
-              </div>
-
-              {/* Plan Select CTA */}
-              <div className="pt-6 mt-4 border-t border-neutral-800/80">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleBookSelected('Daily / Weekly Basic Plan (€50 - €130)');
-                  }}
-                  className="w-full py-2.5 rounded-xl font-bold text-xs bg-neutral-900 hover:bg-neutral-800 text-white border border-neutral-700 transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:border-neutral-500"
-                >
-                  <span>Select Basic Plan</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* CENTER CARD: EXCLUSIVE (Taller, Highlighted Gold Border, 3 Months Mastery) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              onClick={() => setSelectedPlanId('monthly-3m')}
-              className={`relative bg-[#0e0e13] rounded-3xl p-6 lg:p-8 flex flex-col justify-between transition-all duration-300 border-2 cursor-pointer group transform md:-translate-y-2 shadow-2xl ${
-                selectedPlanId === 'monthly-3m' || selectedPlanId === 'monthly-2m'
-                  ? 'border-[#f5c842] shadow-[0_0_35px_rgba(245,200,66,0.18)] ring-1 ring-[#f5c842]/50'
-                  : 'border-[#d4af37]/70 hover:border-[#f5c842]'
-              }`}
-            >
-              {/* Highlight Badge */}
-              <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-0.5 rounded-full bg-gradient-to-r from-[#f5c842] to-[#d4af37] text-black text-[10px] font-black uppercase tracking-widest shadow-md">
-                MOST POPULAR • BEST VALUE
-              </div>
-
-              {/* Header Tab Pill with Yellow Cursor Accent */}
-              <div className="relative mb-6 mt-1">
-                <div className="w-full py-3 rounded-2xl bg-neutral-900 border border-[#f5c842]/50 flex items-center justify-center shadow-[0_0_15px_rgba(245,200,66,0.15)]">
-                  <span className="text-sm font-black tracking-widest text-[#f5c842] uppercase">
-                    EXCLUSIVE
-                  </span>
-                </div>
-                {/* Yellow Cursor Accent Pinning the Corner */}
-                <div className="absolute -top-1.5 -right-1.5 w-6 h-6 flex items-center justify-center pointer-events-none">
-                  <svg className="w-5 h-5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] filter" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 2L20 10L12 13L9 21L4 2Z" fill="#f5c842" stroke="#000000" strokeWidth="1.5" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Card Plans Content */}
-              <div className="space-y-4">
-                <div className="text-center pb-3 border-b border-neutral-800">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">Complete 3 Month Protocol</span>
-                  <div className="text-3xl font-black text-white mt-1">€1,375 <span className="text-xs text-neutral-400 font-normal">/ 3 Month</span></div>
-                  <div className="text-xs text-[#48d89e] font-semibold mt-0.5">Save €500 • Or 2 Month: €1,000</div>
-                </div>
-
-                <div className="space-y-2.5 text-center text-xs text-neutral-200">
-                  <div className="py-1.5 px-2 rounded-lg bg-neutral-900/90 border border-amber-500/30 text-amber-200 font-medium">
-                    Complete 12-Week Total Transformation
-                  </div>
-                  <div className="text-neutral-300 leading-relaxed">
-                    Advanced Hypertrophy & Fat Loss Protocol
-                  </div>
-                  <div className="text-neutral-300 leading-relaxed">
-                    Personalized Macro & Nutrition Programming
-                  </div>
-                  <div className="text-neutral-300 leading-relaxed">
-                    1-on-1 Direct 24/7 WhatsApp VIP Accountability
-                  </div>
-                  <div className="text-neutral-300 leading-relaxed">
-                    InBody Composition & Biometric Check-ins
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    User Transformation Manual (Standard Issue)
-                  </div>
-                </div>
-              </div>
-
-              {/* Plan Select CTA */}
-              <div className="pt-6 mt-4 border-t border-neutral-800">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleBookSelected('3 Month Total Physique Mastery (€1,375)');
-                  }}
-                  className="w-full py-3 rounded-xl font-extrabold text-xs bg-[#f5c842] hover:bg-amber-300 text-black shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span>Book Exclusive 3-Month Plan</span>
-                  <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
-                </button>
-              </div>
-            </motion.div>
-
-            {/* RIGHT CARD: STANDARD (1 Month Dedicated Program) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 35 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              onClick={() => setSelectedPlanId('monthly-1m')}
-              className={`relative bg-[#0d0d11]/90 rounded-3xl p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 border cursor-pointer group ${
-                selectedPlanId === 'monthly-1m'
-                  ? 'border-neutral-500 shadow-xl shadow-white/5 ring-1 ring-neutral-400/30'
-                  : 'border-neutral-800/90 hover:border-neutral-700'
-              }`}
-            >
-              {/* Header Tab Pill with Yellow Cursor Accent */}
-              <div className="relative mb-6">
-                <div className="w-full py-2.5 rounded-2xl bg-neutral-900 border border-neutral-700/80 flex items-center justify-center shadow-inner">
-                  <span className="text-sm font-extrabold tracking-widest text-white uppercase">
-                    STANDARD
-                  </span>
-                </div>
-                {/* Yellow Cursor Accent Pinning the Corner */}
-                <div className="absolute -top-1.5 -right-1.5 w-6 h-6 flex items-center justify-center pointer-events-none">
-                  <svg className="w-5 h-5 drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] filter" viewBox="0 0 24 24" fill="none">
-                    <path d="M4 2L20 10L12 13L9 21L4 2Z" fill="#f5c842" stroke="#000000" strokeWidth="1.5" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Card Plans Content */}
-              <div className="space-y-4">
-                <div className="text-center pb-3 border-b border-neutral-800/80">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">1 Month Program</span>
-                  <div className="text-2xl font-black text-[#f5c842] mt-1">€625 <span className="text-xs text-neutral-400 font-normal">/ 1 Month</span></div>
-                  <div className="text-xs text-neutral-400 font-medium mt-0.5">Comprehensive Single-Month Block</div>
-                </div>
-
-                <div className="space-y-2.5 text-center text-xs text-neutral-300">
-                  <div className="py-1 px-2 rounded-lg bg-neutral-900/60 border border-neutral-800/50">
-                    <strong className="text-white">MONTHLY:</strong> 1 Full Month (€625)
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    Customized Resistance & Cardio Structure
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    Tailored Macronutrient Breakdown
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    Bi-Weekly Form Analysis & Check-ins
-                  </div>
-                  <div className="text-neutral-400 leading-relaxed">
-                    User Training Manual (Standard Issue)
-                  </div>
-                </div>
-              </div>
-
-              {/* Plan Select CTA */}
-              <div className="pt-6 mt-4 border-t border-neutral-800/80">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    handleBookSelected('1 Month Intensive Transformation (€625)');
-                  }}
-                  className="w-full py-2.5 rounded-xl font-bold text-xs bg-neutral-900 hover:bg-neutral-850 text-white border border-neutral-700 transition-all flex items-center justify-center gap-2 cursor-pointer group-hover:border-neutral-500"
-                >
-                  <span>Select Standard Plan</span>
-                  <ArrowUpRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </motion.div>
-          </div>
-        )}
-
-        {/* 2. COMPLETE TRAINING PRICE TABLE (All 5 Plans from user's table) */}
-        {activeView === 'table' && (
-          <div className="bg-[#0e0e14]/90 rounded-3xl border border-neutral-800 overflow-hidden shadow-xl p-4 sm:p-6 space-y-4">
-            <div className="flex items-center justify-between px-2">
-              <div>
-                <h3 className="text-base font-bold text-white uppercase tracking-wider">
-                  TRAINING PRICES & FREQUENCIES
-                </h3>
-                <p className="text-xs text-neutral-400">Click any row to select your training tier</p>
-              </div>
-              <div className="flex items-center gap-2 text-xs text-[#2eb886] font-semibold">
-                <ShieldCheck className="w-4 h-4" /> 100% Results Guaranteed
-              </div>
-            </div>
-
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse">
-                <thead>
-                  <tr className="border-b border-neutral-800 text-[11px] font-bold uppercase tracking-widest text-neutral-400">
-                    <th className="py-3 px-4">PLAN</th>
-                    <th className="py-3 px-4">DURATION / FREQUENCY</th>
-                    <th className="py-3 px-4">DETAILS & INCLUSIONS</th>
-                    <th className="py-3 px-4 text-right">PRICE</th>
-                    <th className="py-3 px-4 text-center">ACTION</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-neutral-900 text-xs">
-                  {TRAINING_PLANS.map((plan) => {
-                    const isSelected = selectedPlanId === plan.id;
-                    return (
-                      <tr 
-                        key={plan.id}
-                        onClick={() => setSelectedPlanId(plan.id)}
-                        className={`transition-colors cursor-pointer ${
-                          isSelected
-                            ? 'bg-[#f5c842]/10 text-white font-medium'
-                            : 'hover:bg-neutral-900/60 text-neutral-300'
-                        }`}
-                      >
-                        <td className="py-3.5 px-4 font-black">
-                          <div className="flex items-center gap-2">
-                            <span className={`w-2 h-2 rounded-full ${isSelected ? 'bg-[#f5c842]' : 'bg-neutral-600'}`} />
-                            <span className={isSelected ? 'text-[#f5c842]' : 'text-white'}>{plan.category}</span>
-                            {plan.popular && (
-                              <span className="px-2 py-0.5 rounded-full bg-[#f5c842] text-black text-[9px] font-black uppercase">
-                                Best
-                              </span>
-                            )}
-                          </div>
-                        </td>
-                        <td className="py-3.5 px-4 font-bold text-white">
-                          {plan.duration}
-                        </td>
-                        <td className="py-3.5 px-4 text-neutral-300 max-w-xs truncate">
-                          {plan.description}
-                        </td>
-                        <td className="py-3.5 px-4 text-right font-black text-sm text-[#f5c842]">
-                          {plan.priceFormatted}
-                        </td>
-                        <td className="py-3.5 px-4 text-center">
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              handleBookSelected(`${plan.category} (${plan.duration}) - ${plan.priceFormatted}`);
-                            }}
-                            className={`px-3 py-1.5 rounded-lg font-bold text-[11px] transition-all cursor-pointer ${
-                              isSelected
-                                ? 'bg-[#f5c842] text-black shadow'
-                                : 'bg-neutral-900 hover:bg-neutral-800 text-white border border-neutral-700'
-                            }`}
-                          >
-                            Book Plan
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <button
+                onClick={() => setSelectedFormat('Online Coaching')}
+                className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 cursor-pointer ${
+                  selectedFormat === 'Online Coaching'
+                    ? 'bg-[#8B5CF6] text-white shadow-lg shadow-purple-500/20'
+                    : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                <Globe className="w-3.5 h-3.5" />
+                <span>Online Coaching</span>
+              </button>
             </div>
           </div>
-        )}
 
-        {/* 3. REFERENCE PILL BANNER: (Matches "EACH SERVICE MEANS CUSTOMISATIONS TO THE PROTOTYPE WEBSITE.") */}
-        <div className="flex justify-center pt-2">
-          <div className="px-6 py-2.5 rounded-full bg-[#121217] border border-neutral-800/90 text-center shadow-lg max-w-2xl">
-            <p className="text-[10px] sm:text-xs tracking-wider text-neutral-300 font-semibold uppercase">
-              EACH PLAN MEANS BESPOKE CUSTOMISATIONS TO ACCELERATE YOUR TRANSFORMATION.
-            </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+            {/* One-on-One Personal Training Callout */}
+            <div 
+              onClick={() => setSelectedFormat('One-on-One Personal Training')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2 ${
+                selectedFormat === 'One-on-One Personal Training'
+                  ? 'bg-[#FF6B35]/10 border-[#FF6B35] shadow-lg shadow-orange-500/10'
+                  : 'bg-neutral-900/50 border-neutral-800/80 hover:border-neutral-700'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-bold text-white text-sm">
+                  <Dumbbell className="w-4 h-4 text-[#FF6B35]" />
+                  <span>One-on-One Personal Training</span>
+                </div>
+                <span className="text-[10px] font-black uppercase text-[#FF6B35] bg-[#FF6B35]/15 px-2.5 py-0.5 rounded-full border border-[#FF6B35]/30">
+                  Private & Hands-on
+                </span>
+              </div>
+              <p className="text-xs text-neutral-300 leading-relaxed">
+                Dedicated private hands-on coaching with real-time biomechanical analysis, instant posture calibration, and maximum workout intensity in person.
+              </p>
+            </div>
+
+            {/* Online Coaching Callout */}
+            <div 
+              onClick={() => setSelectedFormat('Online Coaching')}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer space-y-2 ${
+                selectedFormat === 'Online Coaching'
+                  ? 'bg-[#8B5CF6]/10 border-[#8B5CF6] shadow-lg shadow-purple-500/10'
+                  : 'bg-neutral-900/50 border-neutral-800/80 hover:border-neutral-700'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 font-bold text-white text-sm">
+                  <Globe className="w-4 h-4 text-[#8B5CF6]" />
+                  <span>Worldwide Online Coaching</span>
+                </div>
+                <span className="text-[10px] font-black uppercase text-[#8B5CF6] bg-[#8B5CF6]/15 px-2.5 py-0.5 rounded-full border border-[#8B5CF6]/30">
+                  Custom App & 24/7 Access
+                </span>
+              </div>
+              <p className="text-xs text-neutral-300 leading-relaxed">
+                Seamless digital fitness coaching with bespoke mobile app protocols, weekly video audits, nutritional strategies, and round-the-clock direct coach mentorship.
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* 4. "START YOUR TRAINING JOURNEY" & PROMINENT [ BOOK YOUR TRAINING ] CTA */}
-        <div className="bg-gradient-to-b from-[#111116] to-[#0a0a0d] rounded-3xl border border-neutral-800 p-6 sm:p-8 text-center space-y-4 shadow-xl">
-          <div className="space-y-1.5">
-            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight">
-              START YOUR TRAINING JOURNEY
+        {/* SECTION 1: THE 6 PERSONAL TRAINING OPTIONS GRID (NO PRICES DISPLAYED) */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between border-b border-neutral-900 pb-3">
+            <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tight flex items-center gap-2">
+              <Sparkles className="w-5 h-5 text-[#FF6B35]" />
+              SELECT YOUR DURATION PROTOCOL
             </h3>
-            <p className="text-xs sm:text-sm text-neutral-400 max-w-xl mx-auto">
-              Choose the plan that works best for you and take the first step toward becoming stronger, fitter, and more confident.
+            <span className="text-xs font-mono text-neutral-400">
+              Selected Format: <span className="text-[#FF6B35] font-bold">{selectedFormat}</span>
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+            {PERSONAL_TRAINING_OPTIONS.map((opt) => {
+              const isSelected = selectedOptionId === opt.id;
+              return (
+                <motion.div
+                  key={opt.id}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4 }}
+                  onClick={() => setSelectedOptionId(opt.id)}
+                  className={`relative rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 border cursor-pointer group bg-[#0c0c11]/90 backdrop-blur-md ${
+                    isSelected
+                      ? 'border-2 shadow-2xl ring-1'
+                      : 'border-neutral-800/90 hover:border-neutral-700'
+                  }`}
+                  style={{
+                    borderColor: isSelected ? opt.accent : undefined,
+                    boxShadow: isSelected ? `0 0 30px ${opt.glowColor}` : undefined,
+                  }}
+                >
+                  {/* Top Badge */}
+                  <div className="flex items-center justify-between pb-3 mb-3 border-b border-neutral-800/80">
+                    <span 
+                      className="text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full border"
+                      style={{ color: opt.accent, borderColor: `${opt.accent}40`, backgroundColor: `${opt.accent}15` }}
+                    >
+                      {opt.badge}
+                    </span>
+                    <span className="text-[11px] font-mono text-neutral-400">
+                      {opt.category}
+                    </span>
+                  </div>
+
+                  {/* Title & Main Description */}
+                  <div className="space-y-3">
+                    <div>
+                      <h4 className="text-2xl font-black text-white tracking-wider uppercase font-bingo">
+                        {opt.name}
+                      </h4>
+                      <p className="text-xs font-bold mt-1 text-neutral-200" style={{ color: opt.accent }}>
+                        {opt.description}
+                      </p>
+                    </div>
+
+                    {/* Features list */}
+                    <div className="space-y-2 pt-2 border-t border-neutral-800/60">
+                      {opt.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-2 text-xs text-neutral-300">
+                          <Check className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: opt.accent }} />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Available Delivery Modes & CTA */}
+                  <div className="pt-6 mt-6 border-t border-neutral-800/80 space-y-3">
+                    <div className="flex items-center justify-between text-[11px] text-neutral-400">
+                      <span>Format Flexibility:</span>
+                      <span className="font-semibold text-white">One-on-One OR Online</span>
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setSelectedOptionId(opt.id);
+                        handleBookSelected(`${opt.name} (${opt.description})`);
+                      }}
+                      className="w-full py-3 rounded-xl font-extrabold text-xs text-black transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                      style={{ backgroundColor: opt.accent }}
+                    >
+                      <span>Inquire For {opt.name}</span>
+                      <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+                    </button>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* SECTION 2: WHAT EVERY SELECTED PACKAGE INCLUDES */}
+        <section className="bg-gradient-to-b from-[#111116] via-[#0d0d12] to-[#08080a] rounded-3xl border border-neutral-800 p-6 sm:p-10 space-y-8 shadow-2xl relative overflow-hidden">
+          
+          <div className="relative z-10 space-y-2 text-center max-w-3xl mx-auto">
+            <span className="px-3.5 py-1 rounded-full bg-[#10B981]/15 border border-[#10B981]/30 text-[#10B981] text-xs font-black uppercase tracking-widest inline-block">
+              PREMIUM STANDARDS INCLUDED
+            </span>
+            <h3 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+              WHAT EVERY SELECTED PACKAGE INCLUDES
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400">
+              Regardless of the duration or coaching format you choose, every client receives Coach Douglas’s signature 11-step comprehensive assessment and optimization framework.
             </p>
           </div>
 
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          {/* 11 Premium Included Features Grid */}
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {INCLUDED_FEATURES.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: idx * 0.04 }}
+                  className="p-5 rounded-2xl bg-neutral-900/70 border border-neutral-800/90 hover:border-neutral-700 transition-all flex items-start gap-4 group"
+                >
+                  <div 
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border"
+                    style={{ 
+                      backgroundColor: `${item.color}15`, 
+                      borderColor: `${item.color}35`,
+                      color: item.color 
+                    }}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-bold text-white tracking-wide group-hover:text-[#FACC15] transition-colors">
+                      {item.title}
+                    </h4>
+                    <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                      {item.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          <div className="relative z-10 text-center pt-2">
+            <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-neutral-900/90 border border-neutral-800 text-neutral-300 text-xs font-semibold">
+              <ShieldCheck className="w-4 h-4 text-[#10B981]" />
+              <span>Zero Hidden Fees • 100% Tailored Biomechanical Guidance</span>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 3: PROMINENT CTA BANNER */}
+        <div className="bg-gradient-to-r from-[#111116] via-[#16141d] to-[#0d0d12] rounded-3xl border border-neutral-800 p-6 sm:p-10 text-center space-y-6 shadow-xl">
+          <div className="space-y-2 max-w-2xl mx-auto">
+            <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
+              READY TO LOCK IN YOUR INTAKE?
+            </h3>
+            <p className="text-xs sm:text-sm text-neutral-400">
+              Select your package duration and lock in your custom training consultation directly with Coach Douglas.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-1">
             <button
               onClick={() => handleBookSelected()}
-              className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-[#f5c842] via-[#ffea79] to-[#d4af37] text-black font-extrabold text-sm sm:text-base tracking-wider uppercase shadow-[0_0_25px_rgba(245,200,66,0.35)] hover:shadow-[0_0_35px_rgba(245,200,66,0.6)] hover:scale-[1.02] transition-all flex items-center justify-center gap-3 cursor-pointer"
+              className="w-full sm:w-auto px-10 py-4 rounded-2xl bg-gradient-to-r from-[#FF6B35] via-[#EC4899] to-[#FACC15] text-black font-extrabold text-sm sm:text-base tracking-wider uppercase shadow-[0_0_25px_rgba(255,107,53,0.35)] hover:shadow-[0_0_35px_rgba(255,107,53,0.6)] hover:scale-[1.02] transition-all flex items-center justify-center gap-3 cursor-pointer"
             >
-              <span>BOOK YOUR TRAINING</span>
+              <span>INQUIRE FOR YOUR PACKAGE</span>
               <ArrowUpRight className="w-5 h-5 stroke-[3]" />
             </button>
 
             <a
               href={`https://wa.me/971529421132?text=${encodeURIComponent(
-                `Hi Coach Douglas, I would like to book the ${currentPlan.name} (${currentPlan.duration} - ${currentPlan.priceFormatted}) for personal training.`
+                `Hi Coach Douglas, I am interested in inquiring about the ${currentOption.name} (${currentOption.description}) option via ${selectedFormat}.`
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm tracking-wide border border-neutral-700 hover:border-[#2eb886] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full sm:w-auto px-6 py-4 rounded-2xl bg-neutral-900 hover:bg-neutral-800 text-white font-bold text-xs sm:text-sm tracking-wide border border-neutral-700 hover:border-[#10B981] transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
-              <MessageCircle className="w-4 h-4 text-[#2eb886]" />
-              <span>WhatsApp: +971 52 942 1132</span>
+              <MessageCircle className="w-4 h-4 text-[#10B981]" />
+              <span>WhatsApp Direct Mentorship</span>
             </a>
           </div>
 
-          <div className="text-[11px] text-neutral-500 pt-1">
-            Currently selected: <span className="text-[#f5c842] font-semibold">{currentPlan.name} ({currentPlan.duration} — {currentPlan.priceFormatted})</span>
+          <div className="text-[11px] text-neutral-500">
+            Selected Option: <span className="text-[#FF6B35] font-semibold">{currentOption.name} ({currentOption.description})</span> • Format: <span className="text-[#8B5CF6] font-semibold">{selectedFormat}</span>
           </div>
         </div>
 
       </main>
 
-      {/* 5. FOOTER BRANDING BAR (Matches reference image's <codecraft | @codecraftng footer style) */}
+      {/* FOOTER BRANDING BAR */}
       <footer className="pt-6 border-t border-neutral-900/90 relative z-10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-400 mt-6">
-        
-        {/* Left: Brand Identity in reference style */}
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-[#f5c842] text-black font-black text-base flex items-center justify-center shadow-md">
+          <div className="w-8 h-8 rounded-lg bg-[#FF6B35] text-black font-black text-base flex items-center justify-center shadow-md">
             &lt;
           </div>
           <div>
@@ -872,42 +648,39 @@ export function PackagesPage({ content, isEmbedded = false, onNavigateToHome, on
               COACH DOUGLAS
             </div>
             <div className="text-[10px] text-neutral-400 tracking-wider uppercase">
-              PERSONAL TRAINING & ONLINE COACHING
+              1-ON-1 PERSONAL TRAINING & WORLDWIDE ONLINE COACHING
             </div>
           </div>
         </div>
 
-        {/* Center: Return to Home button (hidden when embedded on home page) */}
         {!isEmbedded && (
           <button
             onClick={onNavigateToHome}
-            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#f5c842] transition-all text-xs font-semibold cursor-pointer group"
+            className="flex items-center gap-2 px-4 py-2 rounded-xl bg-neutral-900/90 hover:bg-neutral-800 text-neutral-300 hover:text-white border border-neutral-800 hover:border-[#FF6B35] transition-all text-xs font-semibold cursor-pointer group"
           >
-            <Home className="w-3.5 h-3.5 text-[#f5c842] group-hover:scale-110 transition-transform" />
+            <Home className="w-3.5 h-3.5 text-[#FF6B35] group-hover:scale-110 transition-transform" />
             <span>Back to Home</span>
           </button>
         )}
 
-        {/* Right: Instagram handle pill in reference style */}
         <div className="flex items-center gap-3">
           <a
             href="https://www.instagram.com/healinghands_fitness?utm_source=qr"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-neutral-800 text-white hover:border-[#f5c842] transition-colors"
+            className="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-neutral-900/90 border border-neutral-800 text-white hover:border-[#EC4899] transition-colors"
           >
             <div className="w-5 h-5 rounded-md bg-neutral-800 flex items-center justify-center">
-              <Instagram className="w-3.5 h-3.5 text-[#f5c842]" />
+              <Instagram className="w-3.5 h-3.5 text-[#EC4899]" />
             </div>
             <span className="text-xs font-mono font-medium text-neutral-300">@healinghands_fitness</span>
           </a>
 
           <div className="hidden sm:flex items-center gap-2 text-[11px] text-neutral-500">
-            <span className="w-2 h-2 rounded-full bg-[#2eb886]" />
-            <span>Accepting New Clients</span>
+            <span className="w-2 h-2 rounded-full bg-[#10B981]" />
+            <span>10 Yrs Experience • Active Roster</span>
           </div>
         </div>
-
       </footer>
     </div>
   );

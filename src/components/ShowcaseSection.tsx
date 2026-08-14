@@ -28,49 +28,49 @@ const SERVICES_CAROUSEL = [
   {
     id: '01',
     title: 'Personal Training',
-    tagline: 'Dubai 1-on-1 In-Person VIP Coaching',
+    tagline: '1-on-1 VIP Private Hands-on Coaching',
     description:
-      'One-on-one coaching in Dubai with personalized workouts, technique correction, motivation, and continuous progress monitoring.',
-    stats: 'Private Gyms / Residences',
-    accent: '#d4af37',
+      'Dedicated private 1-on-1 coaching with personalized workouts, technique correction, motivation, and continuous progress monitoring.',
+    stats: '10 Years Experience • VIP Private',
+    accent: '#FF6B35',
   },
   {
     id: '02',
     title: 'Online Coaching',
-    tagline: 'Worldwide Elite Programming & Accountability',
+    tagline: 'Worldwide Elite Programming & Mentorship',
     description:
-      'Get professional fitness coaching wherever you are in the world, with structured programs and ongoing support.',
-    stats: 'Custom App + 24/7 Support',
-    accent: '#2eb886',
+      'Get elite digital fitness coaching wherever you are in the world, with custom app protocols, video audits, and 24/7 support.',
+    stats: 'Custom App + 24/7 Mentorship',
+    accent: '#8B5CF6',
   },
   {
     id: '03',
     title: 'Body Transformation',
     tagline: 'Comprehensive Metabolic & Physique Overhaul',
     description:
-      'A complete approach combining training, nutrition, accountability, and lifestyle strategies to help you achieve lasting results.',
+      'A complete periodized approach combining resistance training, macro nutrition, habit audits, and mindset strategies.',
     stats: 'Fat Loss & Hypertrophy',
-    accent: '#d4af37',
+    accent: '#10B981',
   },
   {
     id: '04',
     title: 'Strength & Conditioning',
     tagline: 'Athletic Power, Mobility & Longevity',
     description:
-      'Build strength, improve athletic performance, increase endurance, and develop a stronger, more capable body.',
-    stats: '8+ Years Proven Expertise',
-    accent: '#2eb886',
+      'Build functional strength, increase work capacity, optimize biomechanics, and develop a high-performing body.',
+    stats: '10 Years Proven Expertise',
+    accent: '#FACC15',
   },
 ];
 
 const HIGHLIGHTS = [
-  'Personalized Training Programs',
+  'One-on-One Personal Training',
   'Worldwide Online Coaching',
+  '10 Years Experience Specialist',
   'Strength & Muscle Development',
   'Fat Loss & Body Transformation',
-  'Nutrition Guidance',
-  'Progress Tracking',
-  'One-on-One Accountability',
+  'Macronutrient Guidance',
+  '24/7 Direct WhatsApp Mentorship',
 ];
 
 export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionProps) {
@@ -266,17 +266,17 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
 
               {leftPhoneTab === 'packages' && (
                 <div className="space-y-2.5 animate-fadeIn">
-                  <div className="bg-neutral-900 border border-[#d4af37]/60 rounded-xl p-2.5">
-                    <span className="text-[9px] font-bold text-[#d4af37] uppercase tracking-wider block">VIP Packages</span>
-                    <h5 className="text-xs font-bold text-white mt-0.5">Dubai 1-on-1 Training</h5>
+                  <div className="bg-neutral-900 border border-[#FF6B35]/60 rounded-xl p-2.5">
+                    <span className="text-[9px] font-bold text-[#FF6B35] uppercase tracking-wider block">VIP Packages</span>
+                    <h5 className="text-xs font-bold text-white mt-0.5">1-on-1 VIP Personal Training</h5>
                     <p className="text-[9px] text-neutral-300 mt-1 leading-tight">
-                      Private gym sessions, customized nutrition & weekly body scans.
+                      Private hands-on sessions, customized nutrition & weekly body scans.
                     </p>
                     <div className="mt-2 flex items-center justify-between">
-                      <span className="text-[10px] font-extrabold text-[#2eb886]">AED 3,200/mo</span>
+                      <span className="text-[10px] font-extrabold text-[#10B981]">10 Years Experience</span>
                       <button
                         onClick={() => onNavigate && onNavigate('packages')}
-                        className="text-[9px] px-2 py-0.5 bg-[#d4af37] text-black font-bold rounded-lg flex items-center gap-0.5 cursor-pointer"
+                        className="text-[9px] px-2 py-0.5 bg-[#FF6B35] text-black font-bold rounded-lg flex items-center gap-0.5 cursor-pointer"
                       >
                         View All <ArrowUpRight className="w-2.5 h-2.5" />
                       </button>
@@ -284,10 +284,10 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
                   </div>
 
                   <div className="bg-neutral-950 border border-neutral-800 rounded-xl p-2.5">
-                    <span className="text-[9px] font-bold text-[#2eb886] uppercase tracking-wider block">Online Coaching</span>
+                    <span className="text-[9px] font-bold text-[#8B5CF6] uppercase tracking-wider block">Online Coaching</span>
                     <h5 className="text-xs font-bold text-white mt-0.5">Worldwide Accelerator</h5>
                     <p className="text-[9px] text-neutral-400 mt-1 leading-tight">
-                      Global workout programming with 24/7 direct coach chat.
+                      Global workout programming with 24/7 direct coach mentorship.
                     </p>
                   </div>
                 </div>
@@ -295,7 +295,7 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
 
               {leftPhoneTab === 'services' && (
                 <div className="space-y-2 animate-fadeIn">
-                  <div className="text-[10px] font-bold text-[#d4af37] uppercase tracking-wider">
+                  <div className="text-[10px] font-bold text-[#FF6B35] uppercase tracking-wider">
                     Core Specializations
                   </div>
                   {SERVICES_CAROUSEL.map((srv) => (
@@ -304,7 +304,7 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
                         <h6 className="text-[11px] font-bold text-white">{srv.title}</h6>
                         <span className="text-[9px] text-neutral-400">{srv.stats}</span>
                       </div>
-                      <span className="text-[9px] font-mono text-[#d4af37] font-bold">#{srv.id}</span>
+                      <span className="text-[9px] font-mono text-[#FACC15] font-bold">#{srv.id}</span>
                     </div>
                   ))}
                 </div>
@@ -314,11 +314,11 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
                 <div className="space-y-2 animate-fadeIn">
                   <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-2.5 text-center">
                     <span className="text-[9px] text-neutral-400 uppercase">Average Client Fat Loss</span>
-                    <span className="text-xl font-black text-[#2eb886] block">-6.8 kg</span>
+                    <span className="text-xl font-black text-[#10B981] block">-6.8 kg</span>
                     <span className="text-[9px] text-neutral-500">in first 8 weeks</span>
                   </div>
                   <div className="bg-neutral-950 border border-neutral-800 rounded-xl p-2 space-y-1">
-                    <span className="text-[9px] font-bold text-[#d4af37] uppercase block">Resilience Blueprint</span>
+                    <span className="text-[9px] font-bold text-[#FACC15] uppercase block">Resilience Blueprint</span>
                     <p className="text-[9px] text-neutral-300">Targeted hypertrophy, strength recovery, and mindset mastery.</p>
                   </div>
                 </div>
@@ -327,14 +327,14 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
               {leftPhoneTab === 'contact' && (
                 <div className="space-y-2 animate-fadeIn text-center">
                   <div className="bg-neutral-900 border border-neutral-800 rounded-xl p-3 space-y-1.5">
-                    <Phone className="w-5 h-5 text-[#d4af37] mx-auto" />
-                    <h5 className="text-xs font-bold text-white">Direct Coach Contact</h5>
-                    <p className="text-[9.5px] text-[#2eb886] font-mono font-bold">+971 52 942 1132</p>
-                    <p className="text-[9px] text-neutral-400">Dubai Marina / Downtown</p>
+                    <Phone className="w-5 h-5 text-[#FF6B35] mx-auto" />
+                    <h5 className="text-xs font-bold text-white">Direct Coach Mentorship</h5>
+                    <p className="text-[9.5px] text-[#10B981] font-mono font-bold">+971 52 942 1132</p>
+                    <p className="text-[9px] text-neutral-400">1-on-1 & Worldwide Digital</p>
                   </div>
                   <button
                     onClick={() => onGetInTouch && onGetInTouch('Phone Contact')}
-                    className="w-full py-1.5 bg-[#d4af37] text-black font-bold text-[10px] rounded-lg cursor-pointer"
+                    className="w-full py-1.5 bg-[#FF6B35] text-black font-bold text-[10px] rounded-lg cursor-pointer"
                   >
                     Open Booking Form
                   </button>
@@ -567,13 +567,13 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
 
               {rightPhoneTab === 'packages' && (
                 <div className="space-y-2 animate-fadeIn">
-                  <div className="bg-neutral-900 border border-[#d4af37] rounded-xl p-2.5 text-center">
-                    <Award className="w-5 h-5 text-[#d4af37] mx-auto mb-1" />
+                  <div className="bg-neutral-900 border border-[#FF6B35] rounded-xl p-2.5 text-center">
+                    <Award className="w-5 h-5 text-[#FF6B35] mx-auto mb-1" />
                     <h5 className="text-xs font-bold text-white">Choose Your Package</h5>
-                    <p className="text-[9px] text-neutral-300 mt-1">1-on-1 Dubai & Worldwide Online tiers</p>
+                    <p className="text-[9px] text-neutral-300 mt-1">1-on-1 VIP & Worldwide Online Tiers</p>
                     <button
                       onClick={() => onNavigate && onNavigate('packages')}
-                      className="mt-2 w-full py-1.5 bg-[#d4af37] text-black font-bold text-[10px] rounded-lg flex items-center justify-center gap-1 cursor-pointer"
+                      className="mt-2 w-full py-1.5 bg-[#FF6B35] text-black font-bold text-[10px] rounded-lg flex items-center justify-center gap-1 cursor-pointer"
                     >
                       <span>Open Packages Page</span>
                       <ArrowUpRight className="w-3 h-3" />

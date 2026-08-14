@@ -23,20 +23,21 @@
 }
 
 :root {
-  --color-black-base: #0a0a0c;
+  --color-black-base: #09090b;
   --color-black-pure: #000000;
-  --color-gold: #d4af37;
-  --color-gold-bright: #f5c842;
-  --color-healing-green: #2eb886;
-  --color-healing-green-light: #48d89e;
+  --color-orange: #FF6B35;
+  --color-emerald: #10B981;
+  --color-pink: #EC4899;
+  --color-gold: #FACC15;
+  --color-purple: #8B5CF6;
 }
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5), 0 0 30px rgba(212, 175, 55, 0.25), 0 0 50px rgba(46, 184, 134, 0.2);
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5), 0 0 30px rgba(236, 72, 153, 0.3), 0 0 50px rgba(16, 185, 129, 0.25);
   }
   50% {
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.85), 0 0 45px rgba(245, 200, 66, 0.45), 0 0 70px rgba(46, 184, 134, 0.35);
+    box-shadow: 0 0 25px rgba(255, 107, 53, 0.85), 0 0 45px rgba(236, 72, 153, 0.5), 0 0 70px rgba(16, 185, 129, 0.4);
   }
 }
 
@@ -46,10 +47,10 @@
 
 @keyframes logoColorGlow {
   0%, 100% {
-    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 14px rgba(46, 184, 134, 0.25));
+    filter: drop-shadow(0 0 6px rgba(255, 107, 53, 0.4)) drop-shadow(0 0 14px rgba(16, 185, 129, 0.3));
   }
   50% {
-    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.65)) drop-shadow(0 0 20px rgba(46, 184, 134, 0.4));
+    filter: drop-shadow(0 0 10px rgba(255, 107, 53, 0.7)) drop-shadow(0 0 20px rgba(236, 72, 153, 0.45));
   }
 }
 
@@ -58,7 +59,7 @@
 }
 
 .logo-badge-glow {
-  box-shadow: 0 0 12px rgba(212, 175, 55, 0.35), 0 0 24px rgba(46, 184, 134, 0.2);
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.4), 0 0 24px rgba(139, 92, 246, 0.25);
 }
 
 

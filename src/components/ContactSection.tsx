@@ -93,39 +93,46 @@ const SOCIAL_LINKS: SocialItem[] = [
 
 export const PACKAGES_OPTIONS = [
   {
-    id: '3-months',
-    name: '3 Month Total Physique Mastery',
-    price: '€1,375',
-    duration: '3 Month (90 Days)',
-    daysValid: 90,
-  },
-  {
-    id: '2-months',
-    name: '2 Month Hypertrophy & Conditioning',
-    price: '€1,000',
-    duration: '2 Month (60 Days)',
-    daysValid: 60,
-  },
-  {
-    id: '1-month',
-    name: '1 Month Intensive Transformation',
-    price: '€625',
-    duration: '1 Month (30 Days)',
-    daysValid: 30,
+    id: 'daily',
+    name: 'Daily — 60-Minute Personal Training Session',
+    price: 'Bespoke Package',
+    duration: '1 Session Focus',
+    daysValid: 7,
   },
   {
     id: 'weekly',
-    name: 'Weekly Training Plan (3 time)',
-    price: '€130',
-    duration: 'Weekly (14 Days validity)',
+    name: 'Weekly — 3–4 Training Sessions Per Week',
+    price: 'Bespoke Package',
+    duration: 'Weekly Frequency (14 Days validity)',
     daysValid: 14,
   },
   {
-    id: 'daily',
-    name: 'Daily 1-on-1 Session (60 min)',
-    price: '€50',
-    duration: '1 Session (7 Days validity)',
-    daysValid: 7,
+    id: 'one-month',
+    name: 'One Month — Structured Personal Training/Coaching Program',
+    price: 'Bespoke Package',
+    duration: '4-Week Protocol (30 Days)',
+    daysValid: 30,
+  },
+  {
+    id: 'two-months',
+    name: 'Two Months — Progressive Transformation Program',
+    price: 'Bespoke Package',
+    duration: '8-Week Protocol (60 Days)',
+    daysValid: 60,
+  },
+  {
+    id: 'three-months',
+    name: 'Three Months — Comprehensive Transformation & Performance Program',
+    price: 'Bespoke Package',
+    duration: '12-Week Protocol (90 Days)',
+    daysValid: 90,
+  },
+  {
+    id: 'one-year',
+    name: 'One Year — Long-Term Fitness, Lifestyle & Performance Coaching',
+    price: 'Bespoke Package',
+    duration: '52-Week Mastery (365 Days)',
+    daysValid: 365,
   },
 ];
 
@@ -325,10 +332,10 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
 
                   {/* Location */}
                   <div className="flex items-center gap-3 text-neutral-200">
-                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 shrink-0">
-                      <MapPin className="w-4 h-4" />
+                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FACC15] shrink-0">
+                      <MapPin className="w-4 h-4 text-[#FACC15]" />
                     </div>
-                    <span className="text-xs sm:text-sm font-medium">Dubai, United Arab Emirates</span>
+                    <span className="text-xs sm:text-sm font-medium">Private 1-on-1 & Worldwide Online</span>
                   </div>
 
                   {/* Phone */}
@@ -336,7 +343,7 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
                     href="tel:+971529421132"
                     className="flex items-center gap-3 text-neutral-200 hover:text-white transition-colors group/item"
                   >
-                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 group-hover/item:text-[#2eb886] group-hover/item:border-[#2eb886]/40 transition-all shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-neutral-300 group-hover/item:text-[#10B981] group-hover/item:border-[#10B981]/40 transition-all shrink-0">
                       <Phone className="w-4 h-4" />
                     </div>
                     <span className="text-xs sm:text-sm font-medium font-mono tracking-wide">
@@ -347,22 +354,22 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
 
                 {/* Ticket Feature Highlights */}
                 <div className="p-3.5 rounded-2xl bg-black/40 border border-white/10 space-y-2 text-xs text-neutral-300">
-                  <div className="text-[11px] font-bold text-[#f5c842] uppercase tracking-wider flex items-center gap-1.5">
+                  <div className="text-[11px] font-bold text-[#FF6B35] uppercase tracking-wider flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5" />
                     Ticket includes:
                   </div>
                   <ul className="grid grid-cols-2 gap-1.5 text-[11px] text-neutral-400 font-medium">
                     <li className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2eb886]" /> Selected Package
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> Selected Package
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2eb886]" /> Date Booked
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> Date Booked
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2eb886]" /> Client Full Name
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> Client Full Name
                     </li>
                     <li className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#2eb886]" /> Goal / Program
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" /> Goal / Program
                     </li>
                     <li className="flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#2eb886]" /> Expiry Date

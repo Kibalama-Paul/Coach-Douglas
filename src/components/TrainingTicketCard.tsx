@@ -67,7 +67,7 @@ export function TrainingTicketCard({ ticket, onSendAnother }: TrainingTicketCard
 📅 DATE BOOKED: ${ticket.dateBooked}
 ⏳ EXPIRY DATE (VALID UNTIL): ${ticket.expiryDate}
 🛡️ VERIFICATION STATUS: ${ticket.status} (Verified Active Pass)
-📍 LOCATION: Dubai 1-on-1 / Global Online
+📍 LOCATION: Global & Private 1-on-1
 📱 COACH WHATSAPP: +971 52 942 1132
 ══════════════════════════════════════════════════
     `.trim();

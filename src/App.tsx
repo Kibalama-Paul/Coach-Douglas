@@ -27,15 +27,15 @@ const INITIAL_CONTENT: BannerContent = {
   greeting: '',
   titleLine1: 'BUILD THE BODY.',
   titleLine2: 'MASTER THE MIND.',
-  quoteTitle: 'Dubai Personal Training • Worldwide Online Coaching',
-  quoteDescription: 'Elite bespoke hypertrophy, strength, metabolic conditioning, and mindset coaching tailored for high-performing individuals.',
+  quoteTitle: '1-on-1 Personal Training • Worldwide Online Coaching',
+  quoteDescription: 'Elite bespoke hypertrophy, strength, metabolic conditioning, and mindset coaching tailored for high-performing individuals worldwide.',
   services: [
-    { id: '01', name: 'Dubai Personal Training' },
+    { id: '01', name: '1-on-1 Personal Training' },
     { id: '02', name: 'Worldwide Online Coaching' },
     { id: '03', name: 'Nutritional Mastery' },
-    { id: '04', name: '8 Years of Experience' },
+    { id: '04', name: '10 Years Experience' },
   ],
-  statusBadgeText: 'Accepting New 1-on-1 Dubai & Online Clients',
+  statusBadgeText: 'Accepting New 1-on-1 & Online Clients',
   showStatusBadge: true,
   themeStyle: 'pure-black',
 };
@@ -91,8 +91,8 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-transparent text-white flex flex-col selection:bg-[#d4af37] selection:text-black">
-      {/* 300-Frame Image Sequence Smooth Scroll Background */}
-      <ScrollCanvas totalFrames={300} folderPath="ezgif-1751209da614e755-jpg" />
+      {/* Smooth Scroll Canvas Background (Powered by Coach Douglas High-Res Photos) */}
+      <ScrollCanvas />
 
       {/* Clean Top Navigation Header Bar (Hidden on Mobile, Visible on Desktop) */}
       <header className="hidden md:block border-b border-neutral-800/60 bg-black/70 backdrop-blur-xl sticky top-0 z-50 transition-all">
@@ -104,13 +104,13 @@ export default function App() {
             onClick={() => handleGlobalNavigate('home')}
           >
             <div className="relative group">
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#d4af37] to-[#2eb886] rounded-xl blur-xs opacity-70 group-hover:opacity-100 transition-opacity" />
-              <div className="relative w-8 h-8 rounded-lg bg-black border border-[#d4af37]/40 flex items-center justify-center text-[#d4af37] font-bold text-sm shadow-sm logo-badge-glow">
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-[#FF6B35] via-[#EC4899] to-[#10B981] rounded-xl blur-xs opacity-80 group-hover:opacity-100 transition-opacity" />
+              <div className="relative w-8 h-8 rounded-lg bg-black border border-[#FF6B35]/40 flex items-center justify-center text-[#FF6B35] font-bold text-sm shadow-sm logo-badge-glow">
                 CD
               </div>
             </div>
             <span className="font-bingo text-lg sm:text-xl font-bold tracking-tight text-white logo-color-glow">
-              {content.brandName}<span className="text-[#d4af37]">.</span>
+              {content.brandName}<span className="text-[#FF6B35]">.</span>
             </span>
           </div>
 
@@ -126,11 +126,11 @@ export default function App() {
                     onClick={() => handleGlobalNavigate(item.id)}
                     className={`px-2.5 sm:px-4 py-1.5 rounded-xl text-xs sm:text-sm font-semibold transition-all flex items-center gap-1 sm:gap-1.5 cursor-pointer whitespace-nowrap ${
                       currentPage === item.id
-                        ? 'bg-[#d4af37] text-black font-bold shadow-md shadow-[#d4af37]/20'
+                        ? 'bg-[#FF6B35] text-black font-bold shadow-md shadow-[#FF6B35]/20'
                         : 'text-neutral-300 hover:text-white hover:bg-neutral-900/60'
                     }`}
                   >
-                    <Icon className={`w-3.5 h-3.5 shrink-0 ${currentPage === item.id ? 'text-black' : 'text-[#d4af37]'}`} />
+                    <Icon className={`w-3.5 h-3.5 shrink-0 ${currentPage === item.id ? 'text-black' : 'text-[#FF6B35]'}`} />
                     <span>{item.label}</span>
                   </button>
                 );
@@ -164,7 +164,7 @@ export default function App() {
                 if (elem) {
                   elem.scrollIntoView({ behavior: 'smooth' });
                 } else {
-                  setSelectedPackageForContact('1-on-1 Dubai & Online Coaching');
+                  setSelectedPackageForContact('One-on-One Personal Training & Worldwide Online Coaching');
                   setContactModalOpen(true);
                 }
               }}
@@ -307,7 +307,7 @@ export default function App() {
           <div className="bg-neutral-950 border border-neutral-800 rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl relative">
             <div className="flex items-center justify-between pb-4 border-b border-neutral-800">
               <div className="flex items-center gap-2">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#2eb886]" />
+                <div className="w-2.5 h-2.5 rounded-full bg-[#10B981]" />
                 <h3 className="text-lg font-bold text-white">Get in Touch with {content.brandName}</h3>
               </div>
               <button
@@ -320,17 +320,17 @@ export default function App() {
             
             <div className="py-5 space-y-3">
               {selectedPackageForContact && (
-                <div className="p-3 rounded-xl bg-[#d4af37]/10 border border-[#d4af37]/30 text-xs text-[#d4af37] font-semibold flex items-center gap-2">
+                <div className="p-3 rounded-xl bg-[#FF6B35]/10 border border-[#FF6B35]/30 text-xs text-[#FF6B35] font-semibold flex items-center gap-2">
                   <Sparkles className="w-4 h-4" /> Selected Program: {selectedPackageForContact}
                 </div>
               )}
               <p className="text-sm text-neutral-300">
-                Ready to transform your physique and mental performance? Apply for VIP Dubai 1-on-1 training or Worldwide Online Coaching.
+                Ready to transform your physique and mental performance? Apply for VIP 1-on-1 Personal Training or Worldwide Online Coaching.
               </p>
               <div className="p-4 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
-                <p className="text-xs text-neutral-400">Direct Inquiries & WhatsApp</p>
+                <p className="text-xs text-neutral-400">Direct Mentorship Inquiries & WhatsApp</p>
                 <p className="text-base font-mono font-bold text-white">+971 52 942 1132</p>
-                <p className="text-xs text-neutral-400">heavenlydouglas@gmail.com • Dubai, UAE</p>
+                <p className="text-xs text-neutral-400">heavenlydouglas@gmail.com • Global & Private 1-on-1</p>
               </div>
             </div>
 

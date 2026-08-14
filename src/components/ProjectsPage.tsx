@@ -75,7 +75,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '45-60 min',
     intensity: 'Targeted Hypertrophy',
     focus: 'Biomechanics & Overload',
-    location: 'Dubai Gym Suite'
+    location: 'Private Athletic Suite'
   },
   {
     id: 'vid-02',
@@ -90,7 +90,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '60 min',
     intensity: 'Heavy Compound',
     focus: 'Raw Power & Density',
-    location: 'Dubai Free Weights'
+    location: 'Elite Strength Facility'
   },
   {
     id: 'vid-03',
@@ -105,7 +105,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '12-Week Block',
     intensity: 'High Discipline',
     focus: 'Fat Loss & Recomposition',
-    location: 'Dubai & Global'
+    location: 'Worldwide Virtual & 1-on-1'
   },
   {
     id: 'vid-04',
@@ -150,7 +150,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '50 min',
     intensity: 'Maximum Velocity',
     focus: 'Neural Drive & Strength',
-    location: 'Dubai Gym Suite'
+    location: 'Private Athletic Suite'
   },
   {
     id: 'vid-07',
@@ -165,7 +165,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '30 min',
     intensity: 'Active Recovery',
     focus: 'Joint Decompression & Flow',
-    location: 'Dubai Recovery Suite'
+    location: 'Mobility & Recovery Suite'
   },
   {
     id: 'vid-08',
@@ -180,7 +180,7 @@ const GALLERY_VIDEOS: VideoItem[] = [
     duration: '50 min',
     intensity: 'High Volume Density',
     focus: 'Upper Back & Shoulder Width',
-    location: 'Dubai Gym Suite'
+    location: 'Private Athletic Suite'
   },
   {
     id: 'vid-09',
@@ -225,19 +225,19 @@ const GALLERY_IMAGES: ImageItem[] = [
     description: 'Dedicated 12-week nutritional periodization combined with 4x weekly progressive hypertrophy sessions.',
     imageUrl: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1786673202/WhatsApp_Image_2026-08-14_at_04.15.46_rp6fls.jpg',
     stats: 'Client Result: -11kg Fat / +3.5kg Muscle',
-    location: 'Dubai & Online'
+    location: '1-on-1 & Online'
   },
   {
     id: 'img-02',
     number: '02',
     category: 'Personal Training',
     categoryTag: 'Photo 02 — PRIVATE FACILITY',
-    title: 'DUBAI PRIVATE TRAINING SUITE',
+    title: 'PRIVATE ATHLETIC TRAINING SUITE',
     subtitle: 'Exclusive 1-on-1 Gym Environment',
     description: 'State-of-the-art biomechanical equipment in a distraction-free, fully climate-controlled luxury training space.',
     imageUrl: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1786673200/WhatsApp_Image_2026-08-14_at_04.15.31_whic4o.jpg',
-    stats: 'Downtown Dubai Executive Suite',
-    location: 'Dubai Studio'
+    stats: '1-on-1 VIP Athletic Suite',
+    location: 'Private Studio'
   },
   {
     id: 'img-03',
@@ -249,7 +249,7 @@ const GALLERY_IMAGES: ImageItem[] = [
     description: 'Real-time velocity tracking and joint angle optimization to maximize deadlift load without lumbar fatigue.',
     imageUrl: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1786673197/WhatsApp_Image_2026-08-14_at_04.15.49_1_jxmzuq.jpg',
     stats: 'Biomechanical Kinematic Review',
-    location: 'Dubai Coaching'
+    location: '1-on-1 Facility'
   },
   {
     id: 'img-04',
@@ -273,7 +273,7 @@ const GALLERY_IMAGES: ImageItem[] = [
     description: 'Strategic lateral and vertical pulling angles to cultivate an aesthetic, proportional V-taper physique.',
     imageUrl: 'https://res.cloudinary.com/dirfcqs1f/image/upload/v1786674278/converted_image_disamn.jpg',
     stats: 'Volume: 18 Sets Progressive Volume',
-    location: 'Dubai Private Gym'
+    location: 'Private Strength Gym'
   },
   {
     id: 'img-06',
@@ -736,12 +736,12 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           {/* Tagline / Location pills */}
           <div className="inline-flex flex-wrap items-center justify-center gap-3 pt-2">
             <span className="px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 text-xs font-semibold flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#d4af37]" />
-              Dubai Personal Training
+              <MapPin className="w-3.5 h-3.5 text-[#FF6B35]" />
+              1-on-1 Personal Training
             </span>
             <span className="text-neutral-600">•</span>
             <span className="px-3.5 py-1.5 rounded-full bg-neutral-900 border border-neutral-800 text-neutral-300 text-xs font-semibold flex items-center gap-1.5">
-              <Globe className="w-3.5 h-3.5 text-[#2eb886]" />
+              <Globe className="w-3.5 h-3.5 text-[#8B5CF6]" />
               Worldwide Online Coaching
             </span>
           </div>
@@ -1072,7 +1072,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
             Ready To Train With Purpose?
           </h3>
           <p className="text-sm text-neutral-400">
-            Book private Dubai 1-on-1 sessions or join our worldwide digital coaching roster today.
+            Book private 1-on-1 sessions or join our worldwide digital coaching roster today.
           </p>
         </div>
 

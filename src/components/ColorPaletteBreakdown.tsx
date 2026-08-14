@@ -5,32 +5,39 @@ import { ColorDefinition } from '../types';
 
 export const paletteData: ColorDefinition[] = [
   {
-    name: 'Plane Black (Canvas & Surfaces)',
-    percentage: '70%',
-    hex: '#000000',
-    description: 'Ultra-deep plane black backdrop creating premium negative space without distractions.',
-    role: 'Background, layout container, structural framing',
+    name: 'Sunset Orange (Action & Energy)',
+    percentage: '30%',
+    hex: '#FF6B35',
+    description: 'Primary action buttons, energy glows, and hero highlights.',
+    role: 'Primary CTA, energy aura, main highlight accents',
   },
   {
-    name: 'Pure White (Typography & CTA)',
+    name: 'Emerald Vitality (Results & 10-Year Badge)',
+    percentage: '25%',
+    hex: '#10B981',
+    description: '10-year experience badges, live availability, and active client results.',
+    role: '10-Year Badge, progress tracking, live status indicator',
+  },
+  {
+    name: 'Electric Pink (Dynamic Streaks & Hover)',
     percentage: '15%',
-    hex: '#FFFFFF',
-    description: 'High-contrast crisp white for main hero title, secondary headings, and primary CTA pill.',
-    role: 'Hero typography, primary callout button, navigation labels',
+    hex: '#EC4899',
+    description: 'Dynamic gradient streaks and interactive hover borders.',
+    role: 'Gradient glows, interactive hover borders, dynamic accents',
   },
   {
-    name: 'Metallic Gold (Accents & Numerals)',
-    percentage: '10%',
-    hex: '#D4AF37',
-    description: 'Luxury gold accents for service tags (#01 - #04), CTA arrow badge, and signature details.',
-    role: 'Service indices, directional button icon, decorative rules',
+    name: 'Radiant Gold (Credentials & Packages)',
+    percentage: '15%',
+    hex: '#FACC15',
+    description: 'Credential markers, category tags, and package highlights.',
+    role: 'Credential markers, category tags, price matrix badges',
   },
   {
-    name: 'Healing Green (Vitality & Status)',
-    percentage: '5%',
-    hex: '#2EB886',
-    description: 'Calming botanical healing green for live availability indicator, micro-badge, and glow pulses.',
-    role: 'Live status dot, availability badge, subtle ambient lighting',
+    name: 'Royal Purple (Online Coaching & Ambient Depth)',
+    percentage: '15%',
+    hex: '#8B5CF6',
+    description: 'Online coaching badges and subtle ambient background depth.',
+    role: 'Online coaching badges, ambient background aura',
   },
 ];
 
@@ -47,50 +54,57 @@ export function ColorPaletteBreakdown() {
     <div className="bg-neutral-900/60 border border-neutral-800/80 rounded-2xl p-5 md:p-6 backdrop-blur-md">
       <div className="flex items-center justify-between mb-4 pb-3 border-b border-neutral-800">
         <div className="flex items-center gap-2.5">
-          <Palette className="w-5 h-5 text-[#d4af37]" />
+          <Palette className="w-5 h-5 text-[#FF6B35]" />
           <h3 className="text-base font-bold text-white tracking-tight">
-            Design Color Palette Ratio (70 / 15 / 10 / 5)
+            Vibrant High-Contrast Color Palette System
           </h3>
         </div>
         <span className="text-xs font-mono text-neutral-400 bg-neutral-800 px-2.5 py-1 rounded-full border border-neutral-700">
-          Sugo Display & Montserrat
+          Dark Theme (30 / 25 / 15 / 15 / 15)
         </span>
       </div>
 
       {/* Visual Proportional Bar */}
       <div className="w-full h-4 rounded-full overflow-hidden flex border border-neutral-800 mb-5 shadow-inner">
         <div
-          style={{ width: '70%' }}
-          className="bg-black border-r border-neutral-800 relative group flex items-center justify-center text-[10px] font-bold text-neutral-400"
-          title="70% Black"
+          style={{ width: '30%' }}
+          className="bg-[#FF6B35] relative group flex items-center justify-center text-[10px] font-bold text-black"
+          title="30% Sunset Orange"
         >
-          70%
+          30%
+        </div>
+        <div
+          style={{ width: '25%' }}
+          className="bg-[#10B981] relative group flex items-center justify-center text-[10px] font-bold text-black"
+          title="25% Emerald"
+        >
+          25%
         </div>
         <div
           style={{ width: '15%' }}
-          className="bg-white border-r border-neutral-300 relative group flex items-center justify-center text-[10px] font-bold text-black"
-          title="15% White"
+          className="bg-[#EC4899] relative group flex items-center justify-center text-[10px] font-bold text-black"
+          title="15% Pink"
         >
           15%
         </div>
         <div
-          style={{ width: '10%' }}
-          className="bg-[#d4af37] border-r border-[#b8952b] relative group flex items-center justify-center text-[10px] font-bold text-black"
-          title="10% Gold"
+          style={{ width: '15%' }}
+          className="bg-[#FACC15] relative group flex items-center justify-center text-[10px] font-bold text-black"
+          title="15% Gold"
         >
-          10%
+          15%
         </div>
         <div
-          style={{ width: '5%' }}
-          className="bg-[#2eb886] relative group flex items-center justify-center text-[9px] font-bold text-black"
-          title="5% Healing Green"
+          style={{ width: '15%' }}
+          className="bg-[#8B5CF6] relative group flex items-center justify-center text-[10px] font-bold text-white"
+          title="15% Purple"
         >
-          5%
+          15%
         </div>
       </div>
 
       {/* Grid of Palette Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
         {paletteData.map((item, idx) => (
           <motion.div
             key={item.hex}
@@ -114,7 +128,7 @@ export function ColorPaletteBreakdown() {
                 title="Click to copy HEX"
               >
                 {copiedHex === item.hex ? (
-                  <Check className="w-3 h-3 text-[#2eb886]" />
+                  <Check className="w-3 h-3 text-[#10B981]" />
                 ) : (
                   <Copy className="w-3 h-3" />
                 )}

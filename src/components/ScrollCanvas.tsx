@@ -1,13 +1,65 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+export const DOUGLAS_SCROLL_IMAGES = [
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.48 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.48.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.49 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.49 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.49.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.50 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.50 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.50.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.51 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.51 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.51 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.51.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.52 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.52 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.52 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.52.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.53 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.53 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.53 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.53.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.54 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.54 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.54 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.54.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.55 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.55 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.55 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.55 (4).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.55.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.56 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.56 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.56 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.56.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.57 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.57 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.57 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.57.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.58 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.58 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.58.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.59 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.59 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.59 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.41.59.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.42.00 (1).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.42.00 (2).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.42.00 (3).jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.42.00.jpeg",
+  "/douglas-scroll/WhatsApp Image 2026-08-14 at 13.42.01.jpeg"
+];
+
 interface ScrollCanvasProps {
+  imageUrls?: string[];
   totalFrames?: number;
   folderPath?: string;
 }
 
 export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
-  totalFrames = 300,
-  folderPath = 'ezgif-1751209da614e755-jpg',
+  imageUrls = DOUGLAS_SCROLL_IMAGES,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [loadedPercent, setLoadedPercent] = useState<number>(0);
@@ -18,21 +70,17 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
   const currentFrameRef = useRef<number>(0);
   const animationFrameIdRef = useRef<number | null>(null);
 
-  // Generate frame path
-  const getFrameSrc = (index: number) => {
-    const frameNum = String(index).padStart(3, '0');
-    return `/${folderPath}/ezgif-frame-${frameNum}.jpg`;
-  };
+  const totalFrames = imageUrls.length;
 
   useEffect(() => {
     let loadedCount = 0;
     const imgArray: HTMLImageElement[] = [];
 
-    // Preload all frames
-    for (let i = 1; i <= totalFrames; i++) {
+    // Preload all custom Coach Douglas scroll images
+    imageUrls.forEach((src) => {
       const img = new Image();
-      img.src = getFrameSrc(i);
-      
+      img.src = src;
+
       const onImageFinish = () => {
         loadedCount++;
         const pct = Math.floor((loadedCount / totalFrames) * 100);
@@ -47,20 +95,19 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
       img.onerror = onImageFinish;
 
       imgArray.push(img);
-    }
+    });
 
     imagesRef.current = imgArray;
 
     return () => {
-      // Cleanup
-      imgArray.forEach(img => {
+      imgArray.forEach((img) => {
         img.onload = null;
         img.onerror = null;
       });
     };
-  }, [totalFrames, folderPath]);
+  }, [imageUrls, totalFrames]);
 
-  // Main canvas render and scroll tracking logic
+  // Main canvas render and scroll tracking logic with LERP & Cross-fade
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -74,18 +121,11 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
       dpr = window.devicePixelRatio || 1;
       canvas.width = window.innerWidth * dpr;
       canvas.height = window.innerHeight * dpr;
-      drawFrame(Math.round(currentFrameRef.current));
+      drawContinuousFrame(currentFrameRef.current);
     };
 
-    const drawFrame = (frameIndex: number) => {
-      const clampedIndex = Math.max(0, Math.min(totalFrames - 1, frameIndex));
-      const img = imagesRef.current[clampedIndex];
-
+    const drawSingleImage = (img: HTMLImageElement, opacity: number = 1) => {
       if (!img || !img.complete || img.naturalWidth === 0) return;
-
-      // Dark background fill
-      ctx.fillStyle = '#030303';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       const imgWidth = img.naturalWidth;
       const imgHeight = img.naturalHeight;
@@ -97,7 +137,6 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
 
       let drawW: number, drawH: number;
 
-      // Cover scaling math
       if (canvasRatio > imgRatio) {
         drawW = canvasWidth;
         drawH = canvasWidth / imgRatio;
@@ -109,7 +148,47 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
       const drawX = (canvasWidth - drawW) / 2;
       const drawY = (canvasHeight - drawH) / 2;
 
+      ctx.save();
+      ctx.globalAlpha = opacity;
       ctx.drawImage(img, drawX, drawY, drawW, drawH);
+      ctx.restore();
+    };
+
+    const drawContinuousFrame = (fractionalIndex: number) => {
+      const clampedIndex = Math.max(0, Math.min(totalFrames - 1, fractionalIndex));
+      const baseIndex = Math.floor(clampedIndex);
+      const nextIndex = Math.min(totalFrames - 1, baseIndex + 1);
+      const crossFadeProgress = clampedIndex - baseIndex;
+
+      // Dark background fill
+      ctx.fillStyle = '#030303';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const baseImg = imagesRef.current[baseIndex];
+      const nextImg = imagesRef.current[nextIndex];
+
+      if (baseImg) {
+        drawSingleImage(baseImg, 1 - crossFadeProgress * 0.75);
+      }
+
+      if (nextImg && nextIndex !== baseIndex && crossFadeProgress > 0.01) {
+        drawSingleImage(nextImg, crossFadeProgress * 0.85);
+      }
+
+      // Vignette Overlay for dark atmosphere
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.height * 0.3,
+        canvas.width / 2,
+        canvas.height / 2,
+        canvas.height * 0.95
+      );
+      gradient.addColorStop(0, 'rgba(3, 3, 3, 0.45)');
+      gradient.addColorStop(1, 'rgba(3, 3, 3, 0.88)');
+
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
     const updateTargetFrame = () => {
@@ -123,24 +202,18 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
       targetFrameRef.current = scrollFraction * (totalFrames - 1);
     };
 
-    let lastFrameRendered = -1;
-    const lerpAlpha = 0.09; // Smooth interpolation factor
+    const lerpAlpha = 0.08; // Smooth LERP factor
 
     const renderLoop = () => {
       const diff = targetFrameRef.current - currentFrameRef.current;
 
-      if (Math.abs(diff) > 0.001) {
+      if (Math.abs(diff) > 0.0005) {
         currentFrameRef.current += diff * lerpAlpha;
       } else {
         currentFrameRef.current = targetFrameRef.current;
       }
 
-      const frameToDraw = Math.round(currentFrameRef.current);
-      if (frameToDraw !== lastFrameRendered) {
-        drawFrame(frameToDraw);
-        lastFrameRendered = frameToDraw;
-      }
-
+      drawContinuousFrame(currentFrameRef.current);
       animationFrameIdRef.current = requestAnimationFrame(renderLoop);
     };
 
@@ -171,7 +244,7 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
         }`}
       >
         <div
-          className="h-full bg-gradient-to-r from-[#d4af37] via-[#2eb886] to-[#d4af37] transition-all duration-150"
+          className="h-full bg-gradient-to-r from-[#FF6B35] via-[#EC4899] to-[#10B981] transition-all duration-150"
           style={{ width: `${loadedPercent}%` }}
         />
       </div>
@@ -179,7 +252,7 @@ export const ScrollCanvas: React.FC<ScrollCanvasProps> = ({
       {/* Background canvas */}
       <canvas
         ref={canvasRef}
-        className="fixed top-0 left-0 w-screen h-screen z-0 pointer-events-none block"
+        className="fixed top-0 left-0 w-screen h-screen z-0 pointer-events-none block opacity-85"
       />
     </>
   );
