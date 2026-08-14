@@ -23,7 +23,6 @@ export const BannerView = forwardRef<HTMLDivElement, BannerViewProps>(
       { name: 'Projects', icon: Film, highlight: false },
       { name: 'Services', icon: Dumbbell, highlight: false },
       { name: 'Packages', icon: Package, highlight: true },
-      { name: 'Transformation', icon: Sparkles, highlight: false },
       { name: 'Contact', icon: Phone, highlight: false },
     ];
 

@@ -125,7 +125,6 @@ export function ShowcaseSection({ onGetInTouch, onNavigate }: ShowcaseSectionPro
     { id: 'home', label: 'Home', icon: Home },
     { id: 'services', label: 'Services', icon: Dumbbell },
     { id: 'packages', label: 'Packages', icon: Package, highlight: true },
-    { id: 'transform', label: 'Transform', icon: TrendingUp },
     { id: 'contact', label: 'Contact', icon: Phone },
   ];
 
