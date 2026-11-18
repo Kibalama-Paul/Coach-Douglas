@@ -67,7 +67,7 @@ export function TrainingTicketCard({ ticket, onSendAnother }: TrainingTicketCard
 📅 DATE BOOKED: ${ticket.dateBooked}
 ⏳ EXPIRY DATE (VALID UNTIL): ${ticket.expiryDate}
 🛡️ VERIFICATION STATUS: ${ticket.status} (Verified Active Pass)
-📍 LOCATION: Global & Private 1-on-1
+📍 LOCATION: Volfoni Thionville • 26 Rue de Verdun, Thionville, 57100, FR
 📱 COACH WHATSAPP: +971 52 942 1132
 ══════════════════════════════════════════════════
     `.trim();
@@ -98,7 +98,8 @@ export function TrainingTicketCard({ ticket, onSendAnother }: TrainingTicketCard
       `Coach Douglas Sebugwawo will contact you shortly to coordinate your onboarding, biometrics assessment, and session calendar.\n\n` +
       `Best regards,\n` +
       `Coach Douglas Fitness Team\n` +
-      `Dubai, UAE • Worldwide Online`
+      `Volfoni Thionville • 26 Rue de Verdun, Thionville, 57100, FR\n` +
+      `Website: www.volfoni.fr`
     );
 
     window.location.href = `mailto:${ticket.clientEmail}?subject=${subject}&body=${body}`;
@@ -246,7 +247,7 @@ export function TrainingTicketCard({ ticket, onSendAnother }: TrainingTicketCard
                 <strong className="text-white font-bold">{ticket.goalProgram}</strong>
               </div>
               <span className="text-[10px] text-neutral-400 font-mono">
-                Dubai 1-on-1 & Online
+                Volfoni Thionville • FR
               </span>
             </div>
           </div>
@@ -316,7 +317,7 @@ export function TrainingTicketCard({ ticket, onSendAnother }: TrainingTicketCard
             </div>
             <div className="text-[11px] text-neutral-400">
               <div className="text-white font-semibold flex items-center gap-1">
-                Dubai 1-on-1 & Online <Sparkles className="w-3 h-3 text-[#f5c842]" />
+                Volfoni Thionville <Sparkles className="w-3 h-3 text-[#f5c842]" />
               </div>
               <div>Coach Douglas • +971 52 942 1132</div>
             </div>

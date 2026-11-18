@@ -18,6 +18,7 @@ import { AboutPage } from './components/AboutPage';
 import { ProjectsPage } from './components/ProjectsPage';
 import { ShowcaseSection } from './components/ShowcaseSection';
 import { ContactSection } from './components/ContactSection';
+import { MapSection } from './components/MapSection';
 import { BannerContent } from './types';
 
 const INITIAL_CONTENT: BannerContent = {
@@ -64,6 +65,16 @@ export default function App() {
     } else if (target.includes('package')) {
       setCurrentPage('packages');
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (target.includes('location') || target.includes('map')) {
+      setCurrentPage('home');
+      setTimeout(() => {
+        const locElem = document.getElementById('location-section');
+        if (locElem) {
+          locElem.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 900, behavior: 'smooth' });
+        }
+      }, 50);
     } else if (target.includes('contact') || target.includes('touch')) {
       setCurrentPage('home');
       setTimeout(() => {
@@ -186,6 +197,11 @@ export default function App() {
                   }
                 }}
               />
+            </div>
+
+            {/* Map & Physical Location Section */}
+            <div id="location-section" className="bg-transparent backdrop-blur-[2px] rounded-3xl border border-neutral-900/60 p-2 sm:p-6 shadow-2xl">
+              <MapSection />
             </div>
 
             {/* Contact Section at the bottom of the Home Page */}
@@ -330,7 +346,7 @@ export default function App() {
               <div className="p-4 rounded-xl bg-neutral-900 border border-neutral-800 space-y-1">
                 <p className="text-xs text-neutral-400">Direct Mentorship Inquiries & WhatsApp</p>
                 <p className="text-base font-mono font-bold text-white">+971 52 942 1132</p>
-                <p className="text-xs text-neutral-400">heavenlydouglas@gmail.com • Global & Private 1-on-1</p>
+                <p className="text-xs text-neutral-400">heavenlydouglas@gmail.com • Volfoni Thionville (26 Rue de Verdun, Thionville, 57100, GES, FR)</p>
               </div>
             </div>
 

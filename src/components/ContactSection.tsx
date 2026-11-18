@@ -22,7 +22,8 @@ import {
   Target,
   Dumbbell,
   ShieldCheck,
-  ChevronLeft
+  ChevronLeft,
+  Globe
 } from 'lucide-react';
 import { TrainingTicketCard } from './TrainingTicketCard';
 import { TrainingTicket } from '../types';
@@ -254,7 +255,8 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
 
     lines.push(`━━━━━━━━━━━━━━━━━━━━`);
     lines.push(`📧 *Delivered to:* ${ticket.clientEmail}`);
-    lines.push(`📍 *Location:* Dubai 1-on-1 / Online Worldwide`);
+    lines.push(`📍 *Location:* Volfoni Thionville (26 Rue de Verdun, Thionville, 57100, GES, FR)`);
+    lines.push(`🌐 *Website:* https://www.volfoni.fr`);
 
     const fullMessage = lines.join('\n');
     const whatsappUrl = `https://wa.me/971529421132?text=${encodeURIComponent(fullMessage)}`;
@@ -331,11 +333,26 @@ export function ContactSection({ onSuccess, onNavigateHome, hideHomeButton = fal
                   </a>
 
                   {/* Location */}
-                  <div className="flex items-center gap-3 text-neutral-200">
-                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FACC15] shrink-0">
+                  <div className="flex items-start gap-3 text-neutral-200">
+                    <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#FACC15] shrink-0 mt-0.5">
                       <MapPin className="w-4 h-4 text-[#FACC15]" />
                     </div>
-                    <span className="text-xs sm:text-sm font-medium">Private 1-on-1 & Worldwide Online</span>
+                    <div className="min-w-0">
+                      <span className="text-xs sm:text-sm font-semibold text-white block">
+                        Volfoni Thionville
+                      </span>
+                      <span className="text-[11px] sm:text-xs text-neutral-400 block leading-tight">
+                        26 Rue de Verdun, Thionville, 57100, GES, FR
+                      </span>
+                      <a
+                        href="https://www.volfoni.fr"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] text-[#FF6B35] hover:text-[#f5c842] hover:underline inline-flex items-center gap-1 mt-0.5 font-medium transition-colors"
+                      >
+                        <Globe className="w-3 h-3" /> www.volfoni.fr
+                      </a>
+                    </div>
                   </div>
 
                   {/* Phone */}

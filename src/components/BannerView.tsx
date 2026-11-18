@@ -191,15 +191,7 @@ export const BannerView = forwardRef<HTMLDivElement, BannerViewProps>(
               <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 bg-gradient-to-l from-black via-black/80 to-transparent z-10 pointer-events-none" />
 
               <div className="flex overflow-hidden select-none w-full">
-                <motion.div
-                  className="flex items-center gap-8 sm:gap-12 md:gap-16 shrink-0 pr-8 sm:pr-12 md:pr-16"
-                  animate={{ x: ['0%', '-50%'] }}
-                  transition={{
-                    ease: 'linear',
-                    duration: 32,
-                    repeat: Infinity,
-                  }}
-                >
+                <div className="animate-smooth-marquee flex items-center gap-8 sm:gap-12 md:gap-16 shrink-0 pr-8 sm:pr-12 md:pr-16">
                   {[...content.services, ...content.services, ...content.services, ...content.services].map((service, idx) => (
                     <div key={idx} className="flex items-center gap-2.5 sm:gap-3.5 shrink-0 group">
                       <span className="text-[#FACC15] font-bold text-xs sm:text-sm md:text-base tracking-wider flex items-center gap-1 font-mono">
@@ -213,7 +205,7 @@ export const BannerView = forwardRef<HTMLDivElement, BannerViewProps>(
                       <span className="w-1.5 h-1.5 rounded-full bg-[#FF6B35]/50 ml-4 sm:ml-6 shrink-0" />
                     </div>
                   ))}
-                </motion.div>
+                </div>
               </div>
             </footer>
           </div>
